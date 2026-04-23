@@ -607,14 +607,33 @@ if (particlesContainer) {
 document.querySelectorAll('.fish-card').forEach((card) => {
     const iconContainer = card.querySelector('.fish-3d');
     if (!iconContainer) return;
-    const title = card.querySelector('h2').textContent.trim();
-    const fileName = title.replace(/'/g, '').replace(/\s+/g, '-') + '.jpg';
+const title = card.querySelector('h2').textContent.trim();
+    const baseFileName = title.replace(/'/g, '').replace(/\s+/g, '-');
     
     const img = document.createElement('img');
     img.className = 'fish-img';
-    img.src = `images/${fileName}`; 
     img.alt = title;
-    img.onerror = () => { img.src = 'https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=600&auto=format&fit=crop'; };
+
+    // 🚀 THUẬT TOÁN DÒ TÌM TÊN ẢNH (Chống lại sự "chaos" của chữ Hoa/Thường)
+    const possibleUrls = [
+        `images/${baseFileName}.jpg`,                                         // 1. Thử y xì đúc (VD: Frilled-Shark.jpg)
+        `images/${baseFileName.toLowerCase()}.jpg`,                           // 2. Thử viết thường hết (VD: oarfish.jpg)
+        `images/${baseFileName.charAt(0).toUpperCase() + baseFileName.slice(1).toLowerCase()}.jpg` // 3. Thử hoa chữ cái đầu (VD: Goblin-shark.jpg)
+    ];
+    
+    let currentTry = 0;
+    img.src = possibleUrls[currentTry];
+    
+    img.onerror = () => { 
+        currentTry++;
+        if (currentTry < possibleUrls.length) {
+            img.src = possibleUrls[currentTry]; // Nếu tìm không thấy, tự động đổi tên khác để thử lại
+        } else {
+            // Hết cách tìm thì mới xài ảnh san hô dự phòng
+            img.src = 'https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=600&auto=format&fit=crop'; 
+        }
+    };
+
     iconContainer.innerHTML = ''; 
     iconContainer.appendChild(img);
 
