@@ -914,36 +914,33 @@ if (guideModel && aiWidget) {
         });
     }
 
+// 🛠️ CHO PHÉP NẮM KÉO TOÀN BỘ KHUNG CHAT (NẮM Ở THANH TIÊU ĐỀ HOẶC ICON)
     aiWidget.addEventListener('mousedown', (e) => {
-        if (e.target.closest('#chat-panel')) return; 
+        // Cấm kéo chỉ khi người dùng đang bấm vào ô nhập chữ, vùng cuộn tin nhắn hoặc nút Tắt (X)
+        if (e.target.closest('.chat-messages') || e.target.closest('.chat-input-area') || e.target.closest('#close-chat')) return; 
+        
         isDraggingAI = true; 
         didDragAI = false; 
         
-        let startLeft = guideModel.getBoundingClientRect().left;
-        let startTop = guideModel.getBoundingClientRect().top;
+        // 🚀 Lấy tọa độ gốc của TOÀN BỘ cụm Widget thay vì chỉ lấy con cá, giúp kéo khung mượt mà không bị giật (jump)
+        let startLeft = aiWidget.getBoundingClientRect().left;
+        let startTop = aiWidget.getBoundingClientRect().top;
         
         aiOffsetX = e.clientX - startLeft; 
         aiOffsetY = e.clientY - startTop;
         aiWidget.style.transition = 'none';
+        
+        // Đổi con trỏ chuột thành hình bàn tay nắm lại cho ngầu
+        if (e.target.closest('.chat-header')) {
+            e.target.closest('.chat-header').style.cursor = 'grabbing';
+        }
     });
     
-    document.addEventListener('mousemove', (e) => {
-        if (!isDraggingAI) return;
-        didDragAI = true; 
+    // Trả lại trỏ chuột bình thường khi nhả tay
+    document.addEventListener('mouseup', () => {
+        const header = document.querySelector('.chat-header');
+        if (header) header.style.cursor = 'grab';
         
-        let newX = e.clientX - aiOffsetX;
-        let newY = e.clientY - aiOffsetY;
-
-        newX = Math.max(10, Math.min(newX, window.innerWidth - 60));
-        newY = Math.max(10, Math.min(newY, window.innerHeight - 60));
-
-        aiWidget.style.left = `${newX}px`;
-        aiWidget.style.top = `${newY}px`;
-        
-        checkPuffyBounds(false); 
-    });
-    
-    document.addEventListener('mouseup', () => { 
         if (isDraggingAI) {
             isDraggingAI = false; 
             aiWidget.style.transition = 'all 2s cubic-bezier(0.45, 0.05, 0.55, 0.95)';
