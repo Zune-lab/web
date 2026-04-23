@@ -670,7 +670,7 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 // 🚀 MARINE SNOW (TUYẾT BIỂN TĂNG DẦN THEO ĐỘ SÂU)
 const particlesContainer = document.getElementById('particles-container');
 if (particlesContainer) {
-    particlesContainer.innerHTML = ''; // Xóa hạt cũ
+    particlesContainer.innerHTML = ''; 
     const particleCount = window.innerWidth <= 768 ? 30 : 80; 
     for (let i = 0; i < particleCount; i++) {
         const p = document.createElement('div');
@@ -685,158 +685,156 @@ if (particlesContainer) {
     }
 }
 
-// 🚀 QUÉT TẤT CẢ THẺ CÁ ĐỂ LOAD ẢNH VÀ GẮN SỰ KIỆN CLICK
+// 🚀 QUÉT TẤT CẢ THẺ CÁ ĐỂ LOAD ẢNH VÀ GẮN SỰ KIỆN CLICK (GỘP CHUNG 1 VÒNG LẶP DUY NHẤT)
 window.addEventListener('DOMContentLoaded', () => {
-document.querySelectorAll('.fish-card').forEach((card) => {
-    const iconContainer = card.querySelector('.fish-3d');
-    if (!iconContainer) return;
-    const title = card.querySelector('h2').textContent.trim();
-    
-    const img = document.createElement('img');
-    img.className = 'fish-img';
-    img.alt = title;
-
-    // THUẬT TOÁN DÒ TÌM TÊN ẢNH CHO GITHUB
-// THUẬT TOÁN DÒ TÌM TÊN ẢNH CHO GITHUB (Bản vá lỗi dấu nháy đơn)
-    let words = title.split(/\s+/);
-    let firstCapRestLower = words.map((w, i) => i === 0 ? w : w.toLowerCase()).join('-');
-    let noQuote = title.replace(/'/g, ''); // Cắt bỏ dấu nháy đơn (Man o' War -> Man o War)
-
-    const attempts = [
-        title.replace(/\s+/g, '-') + '.jpg',               
-        title.toLowerCase().replace(/\s+/g, '-') + '.jpg', 
-        firstCapRestLower + '.jpg',                        
-        // 🚀 BẢN VÁ: Cắt ký tự lạ, gom 2 dấu gạch ngang thành 1, và xóa gạch thừa ở cuối
-        title.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '') + '.jpg', 
-        noQuote.replace(/\s+/g, '-') + '.jpg',             // Man-o-War.jpg
-        noQuote.toLowerCase().replace(/\s+/g, '-') + '.jpg' // man-o-war.jpg
-    ];
-
-    const uniqueAttempts = [...new Set(attempts)];
-    let currentAttempt = 0;
-
-    const tryLoadImage = () => {
-        if (currentAttempt < uniqueAttempts.length) {
-            img.src = `./images/${uniqueAttempts[currentAttempt]}`;
-            currentAttempt++;
-        } else {
-            img.src = 'https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=600&auto=format&fit=crop';
-        }
-    };
-
-    img.onerror = () => { tryLoadImage(); };
-    tryLoadImage(); // Bắt đầu load
-
-    iconContainer.innerHTML = ''; 
-    iconContainer.appendChild(img);
-
-    // KHI NGƯỜI DÙNG CLICK VÀO THẺ CÁ -> MỞ MODAL
-    card.addEventListener('click', () => {
-        if (typeof TourManager !== 'undefined' && TourManager.isActive) {
-            return; 
-        }
-        const metaText = card.querySelector('.meta').textContent.trim();
-        const originalName = card.getAttribute('data-en-name') || card.querySelector('h2').textContent.trim();
-        const depth = getElementDepth(card);
-        const weirdnessMatch = metaText.match(/Weirdness:\s*([\d.]+)/i);
-        const weirdness = weirdnessMatch ? parseFloat(weirdnessMatch[1]) : 0;
+    document.querySelectorAll('.fish-card').forEach((card) => {
+        const iconContainer = card.querySelector('.fish-3d');
+        if (!iconContainer) return;
+        const title = card.querySelector('h2').textContent.trim();
         
-        let fishGlowColor = 'rgba(0, 242, 254, 0.8)'; 
-        if (depth >= 6000) fishGlowColor = 'rgba(150, 0, 255, 0.9)'; 
-        else if (depth >= 4000) fishGlowColor = 'rgba(255, 0, 100, 0.9)'; 
-        else if (depth >= 1000) fishGlowColor = 'rgba(255, 71, 87, 0.9)'; 
-        else if (depth >= 200) fishGlowColor = 'rgba(0, 255, 150, 0.8)';  
+        const img = document.createElement('img');
+        img.className = 'fish-img';
+        img.alt = title;
 
-        if (dynamicShape) { dynamicShape.style.setProperty('--modal-glow', fishGlowColor); }
+        // THUẬT TOÁN DÒ TÌM TÊN ẢNH CHO GITHUB (BẢN VÁ NHÁY ĐƠN + MỞ RỘNG ĐUÔI FILE)
+        let words = title.split(/\s+/);
+        let firstCapRestLower = words.map((w, i) => i === 0 ? w : w.toLowerCase()).join('-');
+        let noQuote = title.replace(/'/g, ''); 
 
-        let iconHtml = '🐟';
-        const fishImg = card.querySelector('.fish-img');
-        if (fishImg) {
-            
-            // DANH SÁCH CÁ NỀN ĐEN GỐC (Cần xóa nền)
-            const blackBorderFishes = ["Mahi-Mahi", "Anglerfish", "Viperfish", "Black Swallower", "Dragonfish"]; 
-            const isBlackBorder = blackBorderFishes.includes(originalName);
+        const baseNames = [
+            title.replace(/\s+/g, '-'),               
+            title.toLowerCase().replace(/\s+/g, '-'), 
+            firstCapRestLower,                        
+            title.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, ''), 
+            noQuote.replace(/\s+/g, '-'),             
+            noQuote.toLowerCase().replace(/\s+/g, '-') 
+        ];
 
-            // 🚀 TỰ ĐỘNG CHECK TỶ LỆ ẢNH 
-            let imgRatio = 1;
-            if (fishImg.naturalHeight > 0) {
-                imgRatio = fishImg.naturalWidth / fishImg.naturalHeight;
+        let attempts = [];
+        [...new Set(baseNames)].forEach(base => {
+            attempts.push(`${base}.jpg`);
+            attempts.push(`${base}.JPG`); // Bao lô luôn file .JPG viết hoa
+            attempts.push(`${base}.png`); // Bao lô luôn file .png
+        });
+
+        let currentAttempt = 0;
+
+        const tryLoadImage = () => {
+            if (currentAttempt < attempts.length) {
+                img.src = `./images/${attempts[currentAttempt]}`;
+                currentAttempt++;
+            } else {
+                img.src = 'https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=600&auto=format&fit=crop';
             }
-            
-            const isWide = imgRatio > 1.35; 
+        };
 
-            let bgLayer = '';
-            let mainImageStyle = '';
+        img.onerror = () => { tryLoadImage(); };
+        tryLoadImage(); // Bắt đầu load
+
+        iconContainer.innerHTML = ''; 
+        iconContainer.appendChild(img);
+
+        // KHI NGƯỜI DÙNG CLICK VÀO THẺ CÁ -> MỞ MODAL
+        card.addEventListener('click', () => {
+            if (typeof TourManager !== 'undefined' && TourManager.isActive) return; 
             
-            if (isBlackBorder) {
-                let fitStyle = isWide ? 'cover' : 'contain';
-                mainImageStyle = `object-fit: ${fitStyle}; object-position: center; mix-blend-mode: screen; -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%); mask-image: linear-gradient(to bottom, black 75%, transparent 100%);`;
-            } 
-            else if (isWide) {
-                mainImageStyle = "object-fit: cover; object-position: center; border-radius: 12px; -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, black 85%, transparent 100%);";
-            } 
-            else {
-                bgLayer = `<img src="${fishImg.src}" style="position: absolute; top: -10%; left: -10%; width: 120%; height: 120%; object-fit: cover; filter: blur(25px) brightness(0.3) saturate(1.2); z-index: 0; pointer-events: none;">`;
-                mainImageStyle = "object-fit: contain; object-position: center; border-radius: 12px; -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, black 85%, transparent 100%); filter: drop-shadow(0 8px 15px rgba(0,0,0,0.8));";
+            const metaText = card.querySelector('.meta').textContent.trim();
+            const originalName = card.getAttribute('data-en-name') || card.querySelector('h2').textContent.trim();
+            const depth = getElementDepth(card);
+            const weirdnessMatch = metaText.match(/Weirdness:\s*([\d.]+)/i);
+            const weirdness = weirdnessMatch ? parseFloat(weirdnessMatch[1]) : 0;
+            
+            let fishGlowColor = 'rgba(0, 242, 254, 0.8)'; 
+            if (depth >= 6000) fishGlowColor = 'rgba(150, 0, 255, 0.9)'; 
+            else if (depth >= 4000) fishGlowColor = 'rgba(255, 0, 100, 0.9)'; 
+            else if (depth >= 1000) fishGlowColor = 'rgba(255, 71, 87, 0.9)'; 
+            else if (depth >= 200) fishGlowColor = 'rgba(0, 255, 150, 0.8)';  
+
+            if (document.getElementById('dynamic-shape')) { 
+                document.getElementById('dynamic-shape').style.setProperty('--modal-glow', fishGlowColor); 
             }
 
-            iconHtml = `
-            <div style="position: relative; width: 100%; aspect-ratio: 16/9; max-height: 28vh; border-radius: 12px; overflow: hidden; border: 1px solid ${fishGlowColor}; box-shadow: 0 10px 25px rgba(0,0,0,0.6), 0 0 20px ${fishGlowColor}; margin-bottom: clamp(15px, 3vh, 25px); background: #000;">
-                ${bgLayer}
-                <img src="${fishImg.src}" style="position: relative; z-index: 1; width: 100%; height: 100%; ${mainImageStyle}">
-            </div>`;
-        }
+            let iconHtml = '🐟';
+            const fishImg = card.querySelector('.fish-img');
+            if (fishImg && fishImg.src && !fishImg.src.includes('unsplash.com')) {
+                const isBlackBorder = ["Mahi-Mahi", "Anglerfish", "Viperfish", "Black Swallower", "Dragonfish"].includes(originalName);
+                let imgRatio = (fishImg.naturalHeight > 0) ? (fishImg.naturalWidth / fishImg.naturalHeight) : 1;
+                const isWide = imgRatio > 1.35; 
 
-        document.getElementById('modal-visual').innerHTML = iconHtml;
-
-        const engDesc = card.querySelector('p').textContent.trim();
-        document.getElementById('modal-title').textContent = originalName; 
-        document.getElementById('modal-meta').textContent = metaText;
-
-        if (weirdness > 7) {
-            const data = quizData[originalName] || { q: "Thông tin về sinh vật này là gì?", a: ["A", "B", "C"], correct: 0, fragment: "N/A" };
-            document.getElementById('normal-info').style.display = 'none';
-            document.getElementById('quiz-container').style.display = 'block';
-            document.getElementById('quiz-result').style.display = 'none';
-            document.getElementById('quiz-question').textContent = data.q;
-
-            const optionsDiv = document.getElementById('quiz-options');
-            optionsDiv.innerHTML = ''; 
-
-            data.a.forEach((opt, index) => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.textContent = `${String.fromCharCode(97 + index).toUpperCase()}. ${opt}`;
+                let bgLayer = '';
+                let mainImageStyle = '';
                 
-                btn.onclick = () => {
-                    if (index === data.correct) {
-                        solvedCreatures.add(originalName);
-                        document.getElementById('quiz-container').style.display = 'none';
-                        document.getElementById('quiz-result').style.display = 'block';
-                        document.getElementById('quiz-desc').textContent = engDesc; 
-                        document.getElementById('link-fragment').textContent = data.fragment;
-                    } else {
-                        btn.classList.add('wrong');
-                        setTimeout(() => btn.classList.remove('wrong'), 500);
-                    }
-                };
-                optionsDiv.appendChild(btn);
-            });
-        } else {
-            document.getElementById('normal-info').style.display = 'block';
-            document.getElementById('quiz-container').style.display = 'none';
-            document.getElementById('quiz-result').style.display = 'none';
-            document.getElementById('normal-desc').textContent = engDesc; 
-        }
+                if (isBlackBorder) {
+                    let fitStyle = isWide ? 'cover' : 'contain';
+                    mainImageStyle = `object-fit: ${fitStyle}; object-position: center; mix-blend-mode: screen; -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%); mask-image: linear-gradient(to bottom, black 75%, transparent 100%);`;
+                } else if (isWide) {
+                    mainImageStyle = "object-fit: cover; object-position: center; border-radius: 12px; -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, black 85%, transparent 100%);";
+                } else {
+                    bgLayer = `<img src="${fishImg.src}" style="position: absolute; top: -10%; left: -10%; width: 120%; height: 120%; object-fit: cover; filter: blur(25px) brightness(0.3) saturate(1.2); z-index: 0; pointer-events: none;">`;
+                    mainImageStyle = "object-fit: contain; object-position: center; border-radius: 12px; -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, black 85%, transparent 100%); filter: drop-shadow(0 8px 15px rgba(0,0,0,0.8));";
+                }
 
-        if (modal) {
-            modal.classList.add('show');
-            document.body.classList.add('no-scroll');
-        }
+                iconHtml = `
+                <div style="position: relative; width: 100%; aspect-ratio: 16/9; max-height: 28vh; border-radius: 12px; overflow: hidden; border: 1px solid ${fishGlowColor}; box-shadow: 0 10px 25px rgba(0,0,0,0.6), 0 0 20px ${fishGlowColor}; margin-bottom: clamp(15px, 3vh, 25px); background: #000;">
+                    ${bgLayer}
+                    <img src="${fishImg.src}" style="position: relative; z-index: 1; width: 100%; height: 100%; ${mainImageStyle}">
+                </div>`;
+            } else if (fishImg) {
+                iconHtml = `<img src="${fishImg.src}" style="width: 100%; height: auto; border-radius: 12px; margin-bottom: 15px;">`;
+            }
+
+            document.getElementById('modal-visual').innerHTML = iconHtml;
+            const engDesc = card.querySelector('p').textContent.trim();
+            document.getElementById('modal-title').textContent = originalName; 
+            document.getElementById('modal-meta').textContent = metaText;
+
+            if (weirdness > 7) {
+                const data = quizData[originalName] || { q: "Thông tin về sinh vật này là gì?", a: ["A", "B", "C"], correct: 0, fragment: "N/A" };
+                document.getElementById('normal-info').style.display = 'none';
+                document.getElementById('quiz-container').style.display = 'block';
+                document.getElementById('quiz-result').style.display = 'none';
+                document.getElementById('quiz-question').textContent = data.q;
+
+                const optionsDiv = document.getElementById('quiz-options');
+                optionsDiv.innerHTML = ''; 
+
+                data.a.forEach((opt, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.textContent = `${String.fromCharCode(97 + index).toUpperCase()}. ${opt}`;
+                    
+                    btn.onclick = () => {
+                        if (index === data.correct) {
+                            solvedCreatures.add(originalName);
+                            document.getElementById('quiz-container').style.display = 'none';
+                            document.getElementById('quiz-result').style.display = 'block';
+                            document.getElementById('quiz-desc').textContent = engDesc; 
+                            document.getElementById('link-fragment').textContent = data.fragment;
+                        } else {
+                            btn.classList.add('wrong');
+                            setTimeout(() => btn.classList.remove('wrong'), 500);
+                        }
+                    };
+                    optionsDiv.appendChild(btn);
+                });
+            } else {
+                document.getElementById('normal-info').style.display = 'block';
+                document.getElementById('quiz-container').style.display = 'none';
+                document.getElementById('quiz-result').style.display = 'none';
+                document.getElementById('normal-desc').textContent = engDesc; 
+            }
+
+            const modal = document.getElementById('fish-modal');
+            if (modal) {
+                modal.classList.add('show');
+                document.body.classList.add('no-scroll');
+            }
+        });
     });
 });
-}); // ĐÓNG NGOẶC CHO DOMContentLoaded CỦA PHẦN LOAD CÁ MỚI FIX
 
+const closeBtn = document.querySelector('.close-btn');
+const modal = document.getElementById('fish-modal');
 if(closeBtn && modal) closeBtn.addEventListener('click', () => {
     modal.classList.remove('show');
     document.body.classList.remove('no-scroll');
