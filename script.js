@@ -307,59 +307,6 @@ let isDraggingAI = false;
 let aiOffsetX, aiOffsetY;
 let isDraggingGauge = false;
 
-window.addEventListener('DOMContentLoaded', () => {
-document.querySelectorAll('.fish-card').forEach((card) => {
-    const iconContainer = card.querySelector('.fish-3d');
-    if (!iconContainer) return;
-    const title = card.querySelector('h2').textContent.trim();
-    
-    const img = document.createElement('img');
-    img.className = 'fish-img';
-    img.alt = title;
-
-    // 🚀 THUẬT TOÁN "DÒ MÌN" BẰNG JS (Vượt mặt lỗi hoa/thường của GitHub)
-    // Tự động phân tích tên sinh vật và tạo ra mọi phiên bản tên file có thể tồn tại trong thư mục của bạn
-    
-    let words = title.split(/\s+/);
-    // Dành cho trường hợp: Goblin-shark.jpg (Từ đầu viết hoa, từ sau viết thường)
-    let firstCapRestLower = words.map((w, i) => i === 0 ? w : w.toLowerCase()).join('-');
-
-    const attempts = [
-        title.replace(/\s+/g, '-') + '.jpg',               // Thử 1: Giữ nguyên y hệt (VD: Mahi-Mahi.jpg, Sardine-School.jpg)
-        title.toLowerCase().replace(/\s+/g, '-') + '.jpg', // Thử 2: Viết thường toàn bộ (VD: flying-fish.jpg, oarfish.jpg)
-        firstCapRestLower + '.jpg',                        // Thử 3: Chữ đầu hoa, sau thường (VD: Goblin-shark.jpg)
-        title.toLowerCase().replace(/[^a-z0-9]/g, '-') + '.jpg', // Thử 4: Cắt bỏ ký tự lạ như dấu nháy (VD: man-o-war.jpg)
-        title.replace(/[^a-zA-Z0-9]/g, '-') + '.jpg'       // Thử 5: Cắt ký tự lạ nhưng giữ nguyên hoa/thường
-    ];
-
-    // Lọc bỏ các kiểu tên trùng lặp để trình duyệt không phải thử dư thừa
-    const uniqueAttempts = [...new Set(attempts)];
-    let currentAttempt = 0;
-
-    // Hàm đệ quy: Thử load ảnh, nếu hỏng thì nhảy sang tên tiếp theo
-    const tryLoadImage = () => {
-        if (currentAttempt < uniqueAttempts.length) {
-            // Thêm dấu ./ để đảm bảo GitHub Pages tìm đúng thư mục hiện tại
-            img.src = `./images/${uniqueAttempts[currentAttempt]}`;
-            currentAttempt++;
-        } else {
-            // Nếu thử nát 5 kiểu mà vẫn không có file, mới chịu thua và gắn ảnh mặc định
-            img.src = 'https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=600&auto=format&fit=crop';
-        }
-    };
-
-    // Khi GitHub báo lỗi 404 Không tìm thấy, lập tức bắt trình duyệt thử kiểu tên khác!
-    img.onerror = () => {
-        tryLoadImage(); 
-    };
-
-    // Khai hỏa lần thử đầu tiên
-    tryLoadImage();
-
-    iconContainer.innerHTML = ''; 
-    iconContainer.appendChild(img);
-    
-    // ... các khối code click mở Modal bên dưới của bạn giữ nguyên nhé ...
 
 
 // ==========================================
@@ -739,11 +686,90 @@ if (particlesContainer) {
     }
 }
 
+// ==========================================
+// 5. GIAO DIỆN CÁ & MODAL (QUIZ)
+// ==========================================
+// 🚀 TÍNH NĂNG IN/OUT LIÊN TỤC: Thẻ sẽ ẩn đi khi trượt qua và hiện lại khi cuộn tới
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => { 
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active'); 
+        } else {
+            entry.target.classList.remove('active'); 
+        }
+    });
+}, { threshold: 0.15, rootMargin: "-50px 0px -50px 0px" });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// 🚀 MARINE SNOW (TUYẾT BIỂN TĂNG DẦN THEO ĐỘ SÂU)
+const particlesContainer = document.getElementById('particles-container');
+if (particlesContainer) {
+    particlesContainer.innerHTML = ''; // Xóa hạt cũ
+    const particleCount = window.innerWidth <= 768 ? 30 : 80; 
+    for (let i = 0; i < particleCount; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        const size = Math.random() * 3 + 1;
+        p.style.width = p.style.height = `${size}px`; 
+        p.style.left = `${Math.random() * 100}vw`;
+        p.style.animationDuration = `${Math.random() * 15 + 10}s`; 
+        p.style.animationDelay = `${Math.random() * -30}s`; 
+        p.style.setProperty('--base-opacity', Math.random() * 0.6 + 0.2);
+        particlesContainer.appendChild(p);
+    }
+}
+
+// 🚀 QUÉT TẤT CẢ THẺ CÁ ĐỂ LOAD ẢNH VÀ GẮN SỰ KIỆN CLICK
 document.querySelectorAll('.fish-card').forEach((card) => {
     const iconContainer = card.querySelector('.fish-3d');
     if (!iconContainer) return;
     const title = card.querySelector('h2').textContent.trim();
-    const fileName = title.toLowerCase().replace(/'/g, '').replace(/\s+/g, '-') + '.jpg';
+    
+    const img = document.createElement('img');
+    img.className = 'fish-img';
+    img.alt = title;
+
+    // THUẬT TOÁN DÒ TÌM TÊN ẢNH CHO GITHUB
+    let words = title.split(/\s+/);
+    let firstCapRestLower = words.map((w, i) => i === 0 ? w : w.toLowerCase()).join('-');
+
+    const attempts = [
+        title.replace(/\s+/g, '-') + '.jpg',               
+        title.toLowerCase().replace(/\s+/g, '-') + '.jpg', 
+        firstCapRestLower + '.jpg',                        
+        title.toLowerCase().replace(/[^a-z0-9]/g, '-') + '.jpg', 
+        title.replace(/[^a-zA-Z0-9]/g, '-') + '.jpg'       
+    ];
+
+    const uniqueAttempts = [...new Set(attempts)];
+    let currentAttempt = 0;
+
+    const tryLoadImage = () => {
+        if (currentAttempt < uniqueAttempts.length) {
+            img.src = `./images/${uniqueAttempts[currentAttempt]}`;
+            currentAttempt++;
+        } else {
+            img.src = 'https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=600&auto=format&fit=crop';
+        }
+    };
+
+    img.onerror = () => { tryLoadImage(); };
+    tryLoadImage(); // Bắt đầu load
+
+    iconContainer.innerHTML = ''; 
+    iconContainer.appendChild(img);
+
+    // KHI NGƯỜI DÙNG CLICK VÀO THẺ CÁ -> MỞ MODAL
+    card.addEventListener('click', () => {
+        if (typeof TourManager !== 'undefined' && TourManager.isActive) {
+            return; 
+        }
+        const metaText = card.querySelector('.meta').textContent.trim();
+        const originalName = card.getAttribute('data-en-name') || card.querySelector('h2').textContent.trim();
+        const depth = getElementDepth(card);
+        const weirdnessMatch = metaText.match(/Weirdness:\s*([\d.]+)/i);
+        const weirdness = weirdnessMatch ? parseFloat(weirdnessMatch[1]) : 0;
     
     const img = document.createElement('img');
     img.className = 'fish-img';
