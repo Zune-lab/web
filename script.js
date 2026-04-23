@@ -607,7 +607,7 @@ document.querySelectorAll('.fish-card').forEach((card) => {
     const iconContainer = card.querySelector('.fish-3d');
     if (!iconContainer) return;
     const title = card.querySelector('h2').textContent.trim();
-    const fileName = title.toLowerCase().replace(/'/g, '').replace(/\s+/g, '-') + '.jpg';
+    const fileName = title.replace(/'/g, '').replace(/\s+/g, '-') + '.jpg';
     
     const img = document.createElement('img');
     img.className = 'fish-img';
