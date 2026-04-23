@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Gửi Banh ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio id="bgMusic" loop>
+        <source src="pluto projector - instrumental.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="healing-wrapper" id="mainBg">
+        <div class="aurora-bg">
+            <div class="aurora-blob aurora-1"></div>
+            <div class="aurora-blob aurora-2"></div>
+            <div class="aurora-blob aurora-3"></div>
+        </div>
+
+        <div id="screen1" class="glass-card premium-glass">
+            <div class="img-container">
+                <div class="avatar-ring"></div>
+                <img src="a.jpg" class="avatar floating" alt="Hug" onerror="this.src='https://placehold.co/150x150/1a1a24/4a4a5a?text=Hug'">
+                <div class="sparkle-badge">✨</div>
+            </div>
+            <h1>Haluuuu Banh nhaaaaa! 🎀</h1>
+            <p class="subtitle">Em làm cái web này cho ny ny hồi mấy tháng trước á. Em có chỉnh lại khác cho Banh roài.</p>
+            <p class="note">P/s: Nhạc background sẽ hơi to, khuyến khích chỉnh nhỏ volume lap lại nha 🎧.</p>
+            <button class="btn btn-primary pulse-glow" id="btnNext">Mở ra xem thoiii 💌</button>
+        </div>
+
+        <div id="screen2" class="glass-card premium-glass hidden">
+            <h1 class="title-main" id="questionText">Banh có ghét em hong? 🥺</h1>
+            
+            <div id="btnGroup" class="button-row">
+                <button id="btnHong" class="btn-action btn-hong">Có :( 🌧️</button>
+                <button id="btnCo" class="btn-action btn-co">Hong :)</button>
+            </div>
+
+            <div id="feedbackArea" class="hidden">
+                <div id="statusIcon" class="status-icon bounce"></div>
+
+                <div class="split-layout">
+                    <div class="text-column">
+                        <div id="statusText" class="letter-box smooth-scroll"></div>
+                    </div>
+                    
+                    <div class="media-column">
+                        <div id="videoContainer" class="glass-polaroid hidden">
+                            <div class="polaroid-pin">📌</div>
+                            <div class="video-wrapper">
+                                <video id="comfortVideo" controls playsinline>
+                                    <source src="vid.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="polaroid-label">Nghe thử nha... ☁️</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-footer">
+                    <button id="btnBack" class="btn btn-secondary hidden">Quay lại nè ↩️</button>
+                    <a href="https://m.me/" target="_blank" id="btnChat" class="btn btn-chat hidden">Thật lòng cảm ơn chị đã đọc những dòng này. 🫂</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
