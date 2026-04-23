@@ -248,7 +248,8 @@ const funFacts = {
     "Moray Eel": "Chúng hay há miệng nhe nanh nhọn hoắt không phải để dọa nạt, mà là để bơm nước qua mang giúp thở dễ hơn! 😮",
     "Atlantic Cod": "Một con cá tuyết cái 'mắn đẻ' có thể đẻ tới 9 triệu quả trứng trong một lần sinh sản! 🥚",
     "Flounder": "Khi mới nở mắt chúng nằm hai bên, nhưng khi lớn lên, một con mắt sẽ 'trôi' xuyên qua hộp sọ sang phía bên kia để nằm bẹp dưới đáy! 👁️",
-    "Clownfish": "Tất cả cá hề sinh ra đều là cá đực. Khi cá cái đầu đàn chết đi, con đực lớn nhất sẽ 'chuyển giới' biến thành con cái để duy trì nòi giống! 🤡"
+    "Clownfish": "Tất cả cá hề sinh ra đều là cá đực. Khi cá cái đầu đàn chết đi, con đực lớn nhất sẽ 'chuyển giới' biến thành con cái để duy trì nòi giống! 🤡",
+    "Amphipod Swarm": "Dù nhỏ bé nhưng chúng là đội quân 'lao công' khét tiếng nhất vực thẳm, có thể rỉa sạch trơ xương xác một con cá mập khổng lồ rơi xuống chỉ trong thời gian cực ngắn! 💀"
 };
 const zonesData = [
     { keys: ['epipelagic', 'sunlight', 'nông', 'mặt nước'], name: "Vùng Khởi Thủy (0 - 200m)", desc: "Vùng biển ngập tràn ánh sáng. Nơi đây ấm áp (12-20°C) và tập trung tới 90% sự sống của đại dương.", min: 0, max: 200 },
