@@ -245,6 +245,7 @@ const closeBtn = document.querySelector('.close-btn');
 let isMuted = true;
 let isDraggingAI = false; 
 let aiOffsetX, aiOffsetY;
+let isDraggingGauge = false; /* THÊM DÒNG NÀY VÀO ĐÂY */
 
 window.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.fish-card').forEach(card => {
