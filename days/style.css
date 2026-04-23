@@ -1,0 +1,234 @@
+:root {
+    /* Lớp kính mờ */
+    --glass-bg: rgba(10, 20, 40, 0.4); 
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --text-primary: #f0f8ff; 
+    
+    /* Màu Vàng Đào / Champagne */
+    --accent-color: #FFD285; 
+    --accent-glow: rgba(255, 210, 133, 0.4);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    
+    /* --- NỀN GRADIENT CHUYỂN ĐỘNG (Đi từ Tối -> Sáng) --- */
+    background: linear-gradient(-45deg, #020024, #051937, #004d7a, #008793);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite; 
+    
+    overflow-x: hidden;
+    overflow-y: auto; 
+    color: var(--text-primary);
+    position: relative;
+    z-index: 1;
+}
+
+/* Keyframes chung cho việc đổi màu gradient */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#main-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px 0 100px 0; 
+    min-height: 100vh;
+}
+
+/* Hiệu ứng kính mờ cho container */
+.glass-container {
+    width: 90%;
+    max-width: 900px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
+    animation: fadeIn 1.5s ease;
+}
+
+.header { text-align: center; margin-bottom: 30px; }
+.title { 
+    font-family: 'Dancing Script', cursive; 
+    font-size: 3.5rem; 
+    color: var(--accent-color);
+    text-shadow: 0 0 15px var(--accent-glow), 0 0 30px rgba(255, 210, 133, 0.2);
+}
+.subtitle { font-weight: 300; letter-spacing: 2px; opacity: 0.9; color: #caf0f8; }
+
+/* Bento Grid */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 200px);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.item {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+.item img { width: 100%; height: 100%; object-fit: cover; }
+.item:hover { 
+    transform: scale(1.03) translateY(-5px); 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent-color);
+}
+
+.item-1 { grid-column: span 2; }
+.item-2 { grid-column: span 2; }
+.item-3 { grid-column: span 1; }
+.item-4 { grid-column: span 3; }
+
+/* Nội dung thư */
+.letter-content { 
+    line-height: 1.8; 
+    font-size: 1.05rem; 
+    font-weight: 300; 
+    color: #e2e8f0; 
+}
+.letter-content p { margin-bottom: 15px; }
+
+.signature { text-align: right; margin-top: 30px; }
+.my-name { 
+    font-family: 'Dancing Script', cursive; 
+    font-size: 2.5rem; 
+    color: var(--accent-color); 
+    text-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* Màn hình khóa */
+#lock-screen {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(-45deg, #020024, #051937); 
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center; z-index: 1000;
+}
+.loader {
+    width: 50px; height: 50px; border: 3px solid var(--glass-border);
+    border-top: 3px solid var(--accent-color); border-radius: 50%;
+    animation: spin 1s linear infinite; margin-bottom: 20px;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+.hidden { display: none !important; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .bento-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+    .item { grid-column: span 2; height: 200px; }
+    .title { font-size: 2.5rem; }
+}
+
+/* --- HIỆU ỨNG 2 HỘT TƯƠNG PHẢN ÁNH SÁNG --- */
+.bg-shape {
+    position: absolute;
+    filter: blur(80px); 
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+/* Hột góc trên bên trái */
+.shape-1 {
+    width: 500px; 
+    height: 500px;
+    /* Đảo màu: Đi từ Sáng -> Tối */
+    background: linear-gradient(-45deg, #6FB1FC, #4364F7, #051937, #020024);
+    background-size: 400% 400%;
+    top: -15%; 
+    left: -10%;
+    /* Kết hợp cả 2 hiệu ứng: Vừa lơ lửng, vừa đổi màu đồng bộ thời gian với nền */
+    animation: floatOrb 12s infinite ease-in-out alternate, gradientBG 15s ease infinite;
+}
+
+/* Hột góc dưới bên phải */
+.shape-2 {
+    width: 600px; 
+    height: 600px;
+    /* Đảo màu: Đi từ Sáng -> Tối */
+    background: linear-gradient(-45deg, #00c6ff, #0072ff, #0a1931, #020617);
+    background-size: 400% 400%;
+    bottom: -20%; 
+    right: -10%;
+    /* floatOrb alternate-reverse để cục dưới bay ngược hướng cục trên */
+    animation: floatOrb 12s infinite ease-in-out alternate-reverse, gradientBG 15s ease infinite;
+}
+
+.shape-3 { display: none; } 
+
+@keyframes floatOrb {
+    0% { transform: translateY(0) translateX(0) scale(1); }
+    100% { transform: translateY(-50px) translateX(40px) scale(1.1); }
+}
+
+/* --- NÚT CHUYỂN TIẾP TRANG QUÀ TẶNG --- */
+.next-action {
+    position: fixed; 
+    bottom: 40px; 
+    right: 40px; 
+    z-index: 999; 
+    text-align: center;
+    animation: fadeIn 2s ease forwards;
+    animation-delay: 1s; 
+    opacity: 0; 
+}
+
+@media (max-width: 768px) {
+    .next-action {
+        bottom: 20px;
+        right: 20px;
+        transform: scale(0.9);
+    }
+}
+
+.glass-btn {
+    display: inline-block;
+    padding: 15px 35px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    animation: pulseBtn 2s infinite; 
+}
+
+.glass-btn:hover {
+    background: rgba(255, 210, 133, 0.15); 
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(255, 210, 133, 0.3);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    animation: none; 
+}
+
+@keyframes pulseBtn {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 210, 133, 0.4); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(255, 210, 133, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 210, 133, 0); }
+}
