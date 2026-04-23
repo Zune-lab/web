@@ -697,17 +697,19 @@ document.querySelectorAll('.fish-card').forEach((card) => {
     img.alt = title;
 
     // THUẬT TOÁN DÒ TÌM TÊN ẢNH CHO GITHUB
+// THUẬT TOÁN DÒ TÌM TÊN ẢNH CHO GITHUB (Bản vá lỗi dấu nháy đơn)
     let words = title.split(/\s+/);
     let firstCapRestLower = words.map((w, i) => i === 0 ? w : w.toLowerCase()).join('-');
+    let noQuote = title.replace(/'/g, ''); // Cắt bỏ dấu nháy đơn (Man o' War -> Man o War)
 
     const attempts = [
         title.replace(/\s+/g, '-') + '.jpg',               
         title.toLowerCase().replace(/\s+/g, '-') + '.jpg', 
         firstCapRestLower + '.jpg',                        
-        title.toLowerCase().replace(/[^a-z0-9]/g, '-') + '.jpg', 
-        title.replace(/[^a-zA-Z0-9]/g, '-') + '.jpg'       
+        // 🚀 BẢN VÁ: Cắt ký tự lạ, gom 2 dấu gạch ngang thành 1, và xóa gạch thừa ở cuối
+        title.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '') + '.jpg', 
         noQuote.replace(/\s+/g, '-') + '.jpg',             // Man-o-War.jpg
-        noQuote.toLowerCase().replace(/\s+/g, '-') + '.jpg'
+        noQuote.toLowerCase().replace(/\s+/g, '-') + '.jpg' // man-o-war.jpg
     ];
 
     const uniqueAttempts = [...new Set(attempts)];
