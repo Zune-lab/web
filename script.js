@@ -614,25 +614,29 @@ const title = card.querySelector('h2').textContent.trim();
     img.className = 'fish-img';
     img.alt = title;
 
-    // 🚀 THUẬT TOÁN DÒ TÌM TÊN ẢNH (Chống lại sự "chaos" của chữ Hoa/Thường)
+    // 🚀 BỘ TỪ ĐIỂN TÊN ẢNH (Bao phủ mọi trường hợp Hoa/Thường do Windows tạo ra)
     const possibleUrls = [
-        `images/${baseFileName}.jpg`,                                         // 1. Thử y xì đúc (VD: Frilled-Shark.jpg)
-        `images/${baseFileName.toLowerCase()}.jpg`,                           // 2. Thử viết thường hết (VD: oarfish.jpg)
-        `images/${baseFileName.charAt(0).toUpperCase() + baseFileName.slice(1).toLowerCase()}.jpg` // 3. Thử hoa chữ cái đầu (VD: Goblin-shark.jpg)
+        `images/${baseFileName}.jpg`,                                // 1. Y xì đúc (VD: Man-o-War.jpg)
+        `images/${baseFileName.toLowerCase()}.jpg`,                  // 2. Thường hết (VD: man-o-war.jpg)
+        `images/${baseFileName.charAt(0).toUpperCase() + baseFileName.slice(1).toLowerCase()}.jpg`, // 3. Hoa chữ cái đầu (VD: Man-o-war.jpg, Goblin-shark.jpg)
+        `images/${baseFileName.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join('-')}.jpg` // 4. Hoa chữ đầu mỗi từ (VD: Flying-Fish.jpg)
     ];
     
     let currentTry = 0;
-    img.src = possibleUrls[currentTry];
     
-    img.onerror = () => { 
+    // ⚠️ QUAN TRỌNG: Phải cài đặt bẫy lỗi (onerror) TRƯỚC KHI gán link ảnh
+    img.onerror = function() { 
         currentTry++;
         if (currentTry < possibleUrls.length) {
-            img.src = possibleUrls[currentTry]; // Nếu tìm không thấy, tự động đổi tên khác để thử lại
+            this.src = possibleUrls[currentTry]; // Sai thì tự động thử link tiếp theo
         } else {
-            // Hết cách tìm thì mới xài ảnh san hô dự phòng
-            img.src = 'https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=600&auto=format&fit=crop'; 
+            // Thử hết 4 cách vẫn sai thì mới xài ảnh san hô
+            this.src = 'https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=600&auto=format&fit=crop'; 
         }
     };
+
+    // Bắt đầu nạp ảnh từ lựa chọn đầu tiên
+    img.src = possibleUrls[0];
 
     iconContainer.innerHTML = ''; 
     iconContainer.appendChild(img);
