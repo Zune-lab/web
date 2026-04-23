@@ -706,6 +706,8 @@ document.querySelectorAll('.fish-card').forEach((card) => {
         firstCapRestLower + '.jpg',                        
         title.toLowerCase().replace(/[^a-z0-9]/g, '-') + '.jpg', 
         title.replace(/[^a-zA-Z0-9]/g, '-') + '.jpg'       
+        noQuote.replace(/\s+/g, '-') + '.jpg',             // Man-o-War.jpg
+        noQuote.toLowerCase().replace(/\s+/g, '-') + '.jpg'
     ];
 
     const uniqueAttempts = [...new Set(attempts)];
