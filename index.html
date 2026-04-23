@@ -8,16 +8,17 @@
 </head>
 <body>
     <div id="preloader">
-    <div class="loader-content">
-        <div class="puffy-loader">🐡</div>
-        <p>Đang lặn xuống biển sâu...</p>
+        <div class="loader-content">
+            <div class="puffy-loader">🐡</div>
+            <p>Đang lặn xuống biển sâu...</p>
+        </div>
     </div>
-</div>
+    
     <div id="bg-gradient"></div>
     <div id="particles-container"></div>
     
     <div id="ocean-sky"></div>
-<div id="ocean-sky"></div>
+    
     <div id="ocean-surface">
         <div class="wave wave-back"></div>
         <div class="wave wave-front"></div>
@@ -26,12 +27,12 @@
     <div id="sunbeams">
         <div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div>
     </div>
-    </div>
 
     <div id="sound-toggle" class="glass-ui" title="Bật/Tắt âm thanh" style="pointer-events: auto !important;">
         <span id="sound-icon">🔇</span>
     </div>
-<audio id="bgm-surface" loop src="sound/1.mp3"></audio> 
+    
+    <audio id="bgm-surface" loop src="sound/1.mp3"></audio> 
     <audio id="bgm-deep" loop src="sound/2.mp3"></audio>       
     <audio id="bgm-abyss" loop src="sound/3.mp3"></audio>     
 
@@ -259,7 +260,7 @@
                 <div id="quiz-options" style="display: flex; flex-direction: column; gap: 10px;"></div>
             </div>
 
-<div id="quiz-result" style="display: none; margin-top: 15px;">
+            <div id="quiz-result" style="display: none; margin-top: 15px;">
                 <div class="meta-badge" style="background: rgba(0, 255, 100, 0.2); border-color: #00ff64; color: #00ff64;">Chính xác! Đã mở khóa dữ liệu!</div>
                 <p id="quiz-desc" style="margin-top: 15px; font-size: 1.1rem; line-height: 1.6; color: #d1e8f5;"></p>
                 <p id="quiz-extra" style="font-style: italic; color: #a0c4ff; margin-top: 15px; font-size: 0.9rem;"></p>
@@ -272,7 +273,7 @@
         </div>
     </div>
 
-<div id="tour-hud">
+    <div id="tour-hud">
         <div id="tour-speed-controls">
             <button class="speed-btn active" onclick="setTourSpeed(1, this)">1x</button>
             <button class="speed-btn" onclick="setTourSpeed(2, this)">2x</button>
@@ -284,7 +285,7 @@
             <div id="tour-avatar">🐡</div>
             <div id="tour-text">Bắt đầu hành trình...</div>
         </div>
-<div id="tour-actions">
+        <div id="tour-actions">
             <button class="tour-btn yes-btn" onclick="submitTourAnswer('yes')">✅ Có (Khám phá)</button>
             <button class="tour-btn no-btn" onclick="submitTourAnswer('no')">⏭️ Không (Đi tiếp)</button>
         </div>

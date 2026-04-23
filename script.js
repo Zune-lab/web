@@ -189,7 +189,67 @@ const viShortDescs = {
     "Flounder": "Cá thân bẹt với cả hai mắt nằm cùng một bên để thích nghi với lối sống dưới đáy.", 
     "Clownfish": "Sống cộng sinh và hoàn toàn miễn dịch với nọc độc của hải quỳ."
 };
-
+const funFacts = {
+    "Man o' War": "Dù trôi nổi lềnh phềnh trên biển nhưng chúng hoàn toàn mù đường và không biết bơi, cuộc đời 'đưa đẩy' hoàn toàn nhờ vào gió và dòng hải lưu! 🌬️",
+    "Flying Fish": "Chúng có thể lướt trên không trung xa tới 400 mét, xa hơn cả chiều dài của 3 sân bóng đá ghép lại! ⚽",
+    "Sardine School": "Khi bị đe dọa, hàng ngàn con cá mòi tạo thành một quả cầu bạc khổng lồ di chuyển đồng điệu, khiến cá mập cũng phải 'hoa mắt chóng mặt'! 🌪️",
+    "Mahi-Mahi": "Tên của chúng trong tiếng Hawaii có nghĩa là 'Rất mạnh mẽ', phản ánh tốc độ bơi kinh hoàng đuổi theo cá chuồn của chúng! ⚡",
+    "Ocean Sunfish": "Dù to xác nặng tới 2 tấn nhưng não của chúng chỉ nhỏ bằng... một quả hạch! 🧠",
+    "Oarfish": "Đây là loài cá có xương dài nhất thế giới, có thể dài tới 11 mét. Rất nhiều người thời xưa đã lầm tưởng chúng là rồng biển! 📏",
+    "Giant Isopod": "Chúng là những 'thánh nhịn', có thể nhịn đói suốt 5 năm trời nếu không tìm thấy thức ăn dưới đáy biển! 🍽️",
+    "Snipe Eel": "Xương sống của loài lươn này có tới 750 đốt sống, nhiều hơn bất kỳ loài động vật nào khác trên Trái Đất! 🦴",
+    "Barreleye Fish": "Hai cái lỗ nhỏ phía trước đầu nhìn giống mắt, nhưng thực ra đó là... lỗ mũi của chúng! Mắt thật nằm bên trong vòm kính cơ! 👃",
+    "Coelacanth": "Não của loài cá cổ đại này chỉ chiếm 1.5% thể tích hộp sọ, 98.5% còn lại toàn là chất béo! 🧠",
+    "Goblin Shark": "Mũi của chúng chứa các cơ quan siêu đặc biệt có thể cảm nhận được nhịp tim của con mồi đang lẩn trốn dưới lớp cát! 💓",
+    "Frilled Shark": "Thời gian mang thai của loài cá mập này có thể lên tới 3 năm rưỡi, lâu nhất trong toàn thế giới động vật! ⏳",
+    "Anglerfish": "Con đực nhỏ bé đến mức để sinh tồn, chúng phải cắn chặt vào con cái, sau đó hợp nhất cơ thể và mạch máu vào con cái mãi mãi! 💑",
+    "Viperfish": "Răng của chúng dài đến mức nếu đóng miệng lại mạnh quá, chúng có thể tự đâm thủng não của chính mình! 😬",
+    "Gulper Eel": "Dù có cái miệng khổng lồ vĩ đại, nhưng mắt của chúng lại siêu nhỏ vì ở vực thẳm đen kịt thì... có mở mắt to cũng chẳng thấy gì! 👁️",
+    "Black Swallower": "Đôi khi chúng tham ăn nuốt con mồi quá to, đến mức con mồi thối rữa sinh ra khí làm chúng bị trương phình và nổi lềnh phềnh lên mặt nước! 🎈",
+    "Giant Squid": "Mắt của con mực khổng lồ to bằng quả bóng rổ, là đôi mắt to nhất thế giới động vật, giúp chúng nhìn xuyên bóng tối! 🏀",
+    "Ghost Shark": "Sự thật gây sốc: Cơ quan sinh dục của con đực mọc ở... trên trán của chúng! 🤯",
+    "Vampire Squid": "Tên là ma cà rồng nhưng chúng hiền khô, không đi hút máu mà chỉ nhặt nhạnh rác và xác chết ('tuyết biển') rơi từ trên xuống để ăn! ❄️",
+    "Deep-Sea Lizardfish": "Chúng có cả cơ quan sinh dục đực và cái trên cùng một cơ thể, nên cứ gặp đồng loại là 'triển' được luôn không cần chọn giới tính! 💖",
+    "Dumbo Octopus": "Đây là loài bạch tuộc hiếm hoi không có túi mực, vì ở đáy vực đen thui thì xịt mực ngụy trang cũng chẳng để làm gì! 🐙",
+    "Tripod Fish": "Khi đứng bằng 3 vây dưới đáy biển, chúng chỉ việc há miệng quay mặt ngược chiều dòng chảy để thức ăn tự bay vào mồm! 🥢",
+    "Faceless Cusk": "Thực ra chúng có mắt, nhưng mắt lại bị giấu tịt sâu dưới các lớp da nên nhìn lướt qua trông như Vô Diện! 🙈",
+    "Abyssal Grenadier": "Chúng tạo ra âm thanh ầm ĩ bằng cách đánh vào bong bóng bơi của mình để thu hút bạn tình trong bóng tối! 🥁",
+    "Mariana Snailfish": "Để không bị áp suất khủng khiếp nghiền nát, xương của chúng thiếu canxi và dẻo quẹo như sụn! 🦴",
+    "Supergiant Amphipod": "Để chống lại áp suất vực thẳm, chúng trát một lớp áo giáp bằng nhôm chiết xuất từ bùn dưới đáy rãnh Mariana! 🛡️",
+    "Benthic Sea Cucumber": "Món 'phân' mà chúng thải ra sau khi ăn bùn thực chất lại là nguồn dinh dưỡng cực kỳ quý giá cho các sinh vật đáy! 💩",
+    "Challenger Deep Microbes": "Chúng ăn các hóa chất độc hại như hydro sulfua - thứ có mùi y hệt như quả trứng thối! 🥚",
+    "Dragonfish": "Răng của chúng hoàn toàn trong suốt, khiến con mồi không hề nhìn thấy vũ khí tử thần cho đến khi bị cắn chặt! 🗡️",
+    "Fangtooth": "Để ngậm được cái miệng chứa những chiếc nanh khổng lồ, hộp sọ của chúng có sẵn những cái hốc đặc biệt để giấu răng vào! 🦷",
+    "Cookiecutter Shark": "Chúng bạo gan đến mức dám 'cắn trộm' cả dây cáp viễn thông đáy biển và lớp bọc cao su của tàu ngầm hạt nhân! ☢️",
+    "Firefly Squid": "Vào mùa xuân, hàng triệu con mực này dạt vào vịnh Toyama (Nhật Bản) tạo ra một bãi biển phát sáng màu xanh lam đẹp như dải ngân hà! 🏖️",
+    "Stoplight Loosejaw": "Chúng là một trong số ít những sinh vật biển có thể nhìn thấy màu đỏ, giúp chúng soi đèn đỏ đi săn mà con mồi mù tịt không thấy gì! 🚦",
+    "Glass Squid": "Mắt của chúng có một tuyến phát sáng nằm bên dưới để xóa đi cái bóng của chính đôi mắt, giúp chúng tàng hình 100%! 🫥",
+    "Yeti Crab": "Chúng vẫy đôi càng lông lá liên tục quanh các khe nứt núi lửa để 'quạt' oxy, giúp vườn vi khuẩn trên tay mình lớn nhanh để... ăn thịt! 🌬️",
+    "Sea Pig": "Chúng hô hấp bằng cách hút nước vào từ... lỗ hậu môn của mình! 💨",
+    "Zombie Worm": "Con cái to bằng ngón tay, nhưng cơ thể nó chứa hàng chục con đực bé tí xíu sống ăn bám bên trong! 🧟",
+    "Comb Jelly": "Trông mỏng manh lấp lánh nhưng chúng là những thợ săn tàn nhẫn, thường xuyên ăn thịt cả đồng loại sứa lược của mình! ⚔️",
+    "Bloodybelly Comb Jelly": "Cái bụng đỏ rực giúp chúng che giấu ánh sáng từ những con mồi phát quang vừa bị nuốt vào, tránh làm 'bia đỡ đạn' cho kẻ săn mồi khác! 🩸",
+    "Atolla Jellyfish": "Vòng ánh sáng nhấp nháy liên tục của chúng chạy thành vòng tròn y hệt tiếng còi báo động của xe cảnh sát! 🚓",
+    "Deep Sea Spider": "Nhện biển có tim đập siêu yếu, nhịp đập yếu đến mức ruột của chúng phải co bóp phụ để 'bơm' máu đi khắp cơ thể! ❤️",
+    "Hadal Snailfish Variant": "Cơ thể của chúng lỏng lẻo như một miếng thạch, nếu mang lên mặt nước chúng sẽ 'chảy nhão' ra ngay lập tức! 🧊",
+    "Trench Jelly": "Cơ thể chúng giống như những cái túi nilon nổi lềnh phềnh: không não, không tim, không xương rễ nhưng vẫn sống khỏe re! 🧠",
+    "Extremophile Bacteria": "Chúng có thể sống nhăn răng ở nhiệt độ nước sôi hơn 100°C gần các lỗ thông hơi núi lửa đáy biển! 🔥",
+    "Lanternfish": "Trọng lượng của toàn bộ cá đèn lồng trên thế giới gộp lại ước tính lên tới hơn 600 triệu tấn, nặng nhất đại dương! ⚖️",
+    "Sea Angel": "Bơi lượn đẹp như một thiên thần nhỏ, nhưng khi săn mồi, đầu chúng nứt đôi ra, phóng xúc tu ghim chặt và ăn tươi nuốt sống đối thủ! 👼",
+    "Hatchetfish": "Hình dáng cơ thể mỏng lép như lưỡi rìu giúp chúng biến mất hoàn toàn khi bị kẻ thù nhìn từ phía trước hoặc phía sau! 🪓",
+    "Helmet Jellyfish": "Chiếc 'mũ bảo hiểm' phát sáng của chúng giật liên hồi cứ như một chiếc phi thuyền UFO thu nhỏ dưới đáy biển! 🛸",
+    "Blue Dragon (Glaucus atlanticus)": "Chúng lật ngửa khi bơi! Bụng màu xanh hướng lên trời để tiệp màu với nước, lưng màu bạc hướng xuống để lẩn vào ánh mặt trời chiếu xuống! 🐉",
+    "Butterflyfish": "Những đốm đen to tướng hình con mắt trên đuôi khiến kẻ thù hay cắn nhầm vào đuôi thay vì cắn vào đầu của chúng! 🦋",
+    "Parrotfish": "Trước khi ngủ, chúng tự xịt ra một chiếc 'chăn kén' bằng dịch nhầy bao bọc toàn thân để giấu mùi khỏi những con giun sát thủ! 🛌",
+    "Surgeonfish": "Hai bên đuôi của chúng có những chiếc vảy sắc như dao mổ y tế, và có thể gập mở lách cách như một con dao bấm! 🔪",
+    "Barracuda": "Đôi khi chúng lao vào tấn công thợ lặn vì nhìn nhầm ánh sáng lóa từ đồng hồ hoặc dao là... vảy cá ngon lành! ⌚",
+    "Sea Turtle": "Giới tính của rùa con không do ADN quyết định mà do nhiệt độ cát! Cát nóng thì ấp ra con cái, cát lạnh thì ấp ra con đực! 🐢",
+    "Stingray": "Cơ thể dẹt giúp chúng vùi mình hoàn hảo dưới lớp cát, chỉ ló đúng 2 con mắt lên để rình mồi như ninja! 🏖️",
+    "Moray Eel": "Chúng hay há miệng nhe nanh nhọn hoắt không phải để dọa nạt, mà là để bơm nước qua mang giúp thở dễ hơn! 😮",
+    "Atlantic Cod": "Một con cá tuyết cái 'mắn đẻ' có thể đẻ tới 9 triệu quả trứng trong một lần sinh sản! 🥚",
+    "Flounder": "Khi mới nở mắt chúng nằm hai bên, nhưng khi lớn lên, một con mắt sẽ 'trôi' xuyên qua hộp sọ sang phía bên kia để nằm bẹp dưới đáy! 👁️",
+    "Clownfish": "Tất cả cá hề sinh ra đều là cá đực. Khi cá cái đầu đàn chết đi, con đực lớn nhất sẽ 'chuyển giới' biến thành con cái để duy trì nòi giống! 🤡"
+};
 const zonesData = [
     { keys: ['epipelagic', 'sunlight', 'nông', 'mặt nước'], name: "Vùng Khởi Thủy (0 - 200m)", desc: "Vùng biển ngập tràn ánh sáng. Nơi đây ấm áp (12-20°C) và tập trung tới 90% sự sống của đại dương.", min: 0, max: 200 },
     { keys: ['mesopelagic', 'twilight', 'chạng vạng'], name: "Vùng Chạng Vạng (200 - 1000m)", desc: "Ánh sáng yếu dần, nước lạnh hơn (4-12°C). Sinh vật bắt đầu tự phát sáng để sinh tồn.", min: 200, max: 1000 },
@@ -245,7 +305,7 @@ const closeBtn = document.querySelector('.close-btn');
 let isMuted = true;
 let isDraggingAI = false; 
 let aiOffsetX, aiOffsetY;
-let isDraggingGauge = false; /* THÊM DÒNG NÀY VÀO ĐÂY */
+let isDraggingGauge = false;
 
 window.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.fish-card').forEach(card => {
@@ -345,63 +405,74 @@ function getElementDepth(el) {
 }
 
 function alignToExactDepth() {
-    const isMobile = window.innerWidth <= 768;
-    
-    // 1. LẤY VỊ TRÍ CÁC KHU VỰC CHỮ (ZONES) ĐỂ LÀM "VÙNG CẤM"
-    let zonePositions = [];
+    const isMobile = window.innerWidth <= 1024; // 🚀 Nâng mốc nhận diện lên 1024px
+    const screenRatio = window.innerWidth / window.innerHeight;
+    /* ... phần còn lại giữ nguyên ... */
+
+    // 1. ĐO CHIỀU CAO THỰC TẾ CỦA TỪNG VÙNG CHỮ ZONE
+    let zoneBounds = [];
     document.querySelectorAll('.zone-marker').forEach(marker => {
         const depth = parseInt(marker.getAttribute('data-depth')) || 0;
-        let topVh = startDiveVh + mapDepthToPercent(depth) * diveDistanceVh;
-        marker.style.top = `${topVh}vh`;
+        let centerVh = startDiveVh + mapDepthToPercent(depth) * diveDistanceVh;
+        marker.style.top = `${centerVh}vh`;
         marker.style.transform = "translateY(-50%)"; 
         
-        // Tạo "vùng an toàn" xung quanh Zone (20vh ở trên và 25vh ở dưới)
-        zonePositions.push({
-            top: topVh - 20,
-            bottom: topVh + 25
+        // Lấy chiều cao pixel thực tế của khối chữ chia cho màn hình để ra vh
+        let heightVh = (marker.offsetHeight / window.innerHeight) * 100;
+        
+        zoneBounds.push({
+            top: centerVh - (heightVh / 2),
+            bottom: centerVh + (heightVh / 2)
         });
     });
 
-    // 2. SẮP XẾP CÁC THẺ CÁ VÀ MỐC LỊCH SỬ
+    // 2. SẮP XẾP THẺ CÁ VÀ MỐC LỊCH SỬ
     let items = [];
     document.querySelectorAll('.fish-card, .milestone').forEach(el => {
         items.push({ el, depth: getElementDepth(el) });
     });
     items.sort((a, b) => a.depth - b.depth);
 
+    let minGapVh = screenRatio > 1.3 ? 35 : 22;
     let isLeft = true; 
     let lastTopVh = startDiveVh; 
-    
-    // 🚀 TỰ ĐỘNG TÍNH TOÁN KHOẢNG CÁCH DỰA TRÊN TỈ LỆ MÀN HÌNH
-    const screenRatio = window.innerWidth / window.innerHeight;
-    // Nếu màn hình ngang (Laptop/PC), cần gap (vh) to hơn vì chiều cao thực tế nhỏ
-    let minGapVh = screenRatio > 1.2 ? 35 : 22; 
 
+    // 3. THUẬT TOÁN NÉ VA CHẠM TUYỆT ĐỐI (DỰA TRÊN KÍCH THƯỚC THỰC)
     items.forEach((item, index) => {
         let exactTopVh = startDiveVh + mapDepthToPercent(item.depth) * diveDistanceVh;
         
-        // BƯỚC A: Né thẻ cá trước đó
+        // Lấy chiều cao thực của thẻ cá đang xét (nếu chưa render kịp thì dự phòng 60vh)
+        let cardHeightVh = (item.el.offsetHeight / window.innerHeight) * 100 || 60;
+        let cardHalfVh = cardHeightVh / 2;
+
+        // BƯỚC A: Né thẻ cá đằng trước
         if (exactTopVh < lastTopVh + minGapVh && index !== 0) {
             exactTopVh = lastTopVh + minGapVh;
         }
 
-        // BƯỚC B: Né các vùng chữ Zone (Không cho thẻ đè lên chữ)
-        for (let zone of zonePositions) {
-            // Nếu vị trí thẻ vô tình rơi vào giữa vùng cấm của Zone
-            if (exactTopVh > zone.top && exactTopVh < zone.bottom) {
-                exactTopVh = zone.bottom + 5; // Tự động đẩy thẻ xuống dưới Zone 5vh
+        // BƯỚC B: Né vùng chữ Zone
+        for (let zone of zoneBounds) {
+            // Tọa độ đỉnh và đáy thực tế của thẻ cá này
+            let cardTop = exactTopVh - cardHalfVh;
+            let cardBottom = exactTopVh + cardHalfVh;
+            
+            // Thêm vùng đệm an toàn quanh chữ Zone (8vh)
+            let zoneSafeTop = zone.top - 8;    
+            let zoneSafeBottom = zone.bottom + 8; 
+
+            // NẾU thẻ cá bị kẹt đè vào chữ
+            if (cardBottom > zoneSafeTop && cardTop < zoneSafeBottom) {
+                // Đẩy tâm thẻ xuống dưới sao cho "đỉnh" của thẻ cá nằm hẳn dưới vùng an toàn
+                exactTopVh = zoneSafeBottom + cardHalfVh; 
             }
         }
 
-        lastTopVh = exactTopVh; // Lưu lại vị trí để thẻ sau né
+        lastTopVh = exactTopVh;
 
-        // BƯỚC C: Sắp xếp Trái/Phải (Zig-zag)
+        // BƯỚC C: Canh lề Trái/Phải
         let assignedSide = isLeft ? 'left' : 'right';
         isLeft = !isLeft; 
-
-        if (isMobile) {
-            assignedSide = 'center'; 
-        }
+        if (isMobile) assignedSide = 'center'; 
 
         item.el.className = item.el.className.replace(/left-align|right-align|center-align/g, '').trim();
         item.el.classList.add(`${assignedSide}-align`);
@@ -414,8 +485,7 @@ function alignToExactDepth() {
         item.el.onmouseleave = () => item.el.style.transform = `translateY(-50%)`;
     });
 
-    // 🚀 TỰ ĐỘNG KÉO DÀI ĐÁY BIỂN
-    // Đảm bảo đáy biển luôn dài hơn vị trí của thẻ cuối cùng, không bị cụt giữa chừng
+    // 4. CẬP NHẬT ĐÁY BIỂN
     const mainEl = document.querySelector('main');
     if(mainEl) mainEl.style.height = `${lastTopVh + 50}vh`;
 }
@@ -631,37 +701,14 @@ if (particlesContainer) {
 document.querySelectorAll('.fish-card').forEach((card) => {
     const iconContainer = card.querySelector('.fish-3d');
     if (!iconContainer) return;
-const title = card.querySelector('h2').textContent.trim();
-    const baseFileName = title.replace(/'/g, '').replace(/\s+/g, '-');
+    const title = card.querySelector('h2').textContent.trim();
+    const fileName = title.toLowerCase().replace(/'/g, '').replace(/\s+/g, '-') + '.jpg';
     
     const img = document.createElement('img');
     img.className = 'fish-img';
+    img.src = `images/${fileName}`; 
     img.alt = title;
-
-    // 🚀 BỘ TỪ ĐIỂN TÊN ẢNH (Bao phủ mọi trường hợp Hoa/Thường do Windows tạo ra)
-    const possibleUrls = [
-        `images/${baseFileName}.jpg`,                                // 1. Y xì đúc (VD: Man-o-War.jpg)
-        `images/${baseFileName.toLowerCase()}.jpg`,                  // 2. Thường hết (VD: man-o-war.jpg)
-        `images/${baseFileName.charAt(0).toUpperCase() + baseFileName.slice(1).toLowerCase()}.jpg`, // 3. Hoa chữ cái đầu (VD: Man-o-war.jpg, Goblin-shark.jpg)
-        `images/${baseFileName.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join('-')}.jpg` // 4. Hoa chữ đầu mỗi từ (VD: Flying-Fish.jpg)
-    ];
-    
-    let currentTry = 0;
-    
-    // ⚠️ QUAN TRỌNG: Phải cài đặt bẫy lỗi (onerror) TRƯỚC KHI gán link ảnh
-    img.onerror = function() { 
-        currentTry++;
-        if (currentTry < possibleUrls.length) {
-            this.src = possibleUrls[currentTry]; // Sai thì tự động thử link tiếp theo
-        } else {
-            // Thử hết 4 cách vẫn sai thì mới xài ảnh san hô
-            this.src = 'https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=600&auto=format&fit=crop'; 
-        }
-    };
-
-    // Bắt đầu nạp ảnh từ lựa chọn đầu tiên
-    img.src = possibleUrls[0];
-
+    img.onerror = () => { img.src = 'https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=600&auto=format&fit=crop'; };
     iconContainer.innerHTML = ''; 
     iconContainer.appendChild(img);
 
@@ -688,37 +735,47 @@ const title = card.querySelector('h2').textContent.trim();
 let iconHtml = '🐟';
         const fishImg = card.querySelector('.fish-img');
         if (fishImg) {
-            // 1. Danh sách cá có nền ĐEN THUI
-            const blackBorderFishes = ["Mahi-Mahi", "Anglerfish", "Viperfish", "Black Swallower", "Dragonfish"]; 
-            // 2. Danh sách cá có ảnh DỌC (cần lót nền mờ để khỏi bị viền đen 2 bên)
-            const verticalFishes = ["Oarfish", "Man o' War"]; 
+            const originalName = card.getAttribute('data-en-name') || card.querySelector('h2').textContent.trim();
             
+            // DANH SÁCH CÁ NỀN ĐEN GỐC (Cần xóa nền)
+            const blackBorderFishes = ["Mahi-Mahi", "Anglerfish", "Viperfish", "Black Swallower", "Dragonfish"]; 
             const isBlackBorder = blackBorderFishes.includes(originalName);
-            const isVertical = verticalFishes.includes(originalName);
+
+            // 🚀 TỰ ĐỘNG CHECK TỶ LỆ ẢNH 
+            let imgRatio = 1;
+            if (fishImg.naturalHeight > 0) {
+                imgRatio = fishImg.naturalWidth / fishImg.naturalHeight;
+            }
+            
+            // Hạ tiêu chuẩn xuống một chút (1.35) để nhiều ảnh được bung Full hơn
+            const isWide = imgRatio > 1.35; 
 
             let bgLayer = '';
             let mainImageStyle = '';
             
             if (isBlackBorder) {
-                // STYLE 1: XÓA NỀN ĐEN
-                mainImageStyle = "object-fit: cover; object-position: center; mix-blend-mode: screen; -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%); mask-image: linear-gradient(to bottom, black 70%, transparent 100%);";
-            } else if (isVertical) {
-                // STYLE 2: ẢNH DỌC LÓT NỀN MỜ
-                bgLayer = `<img src="${fishImg.src}" style="position: absolute; top: -10%; left: -10%; width: 120%; height: 120%; object-fit: cover; filter: blur(15px) brightness(0.5) saturate(1.2); z-index: 0; pointer-events: none;">`;
-                mainImageStyle = "object-fit: contain; object-position: center; border-radius: 15px; -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, black 85%, transparent 100%);";
-            } else {
-                // STYLE 3: ẢNH BÌNH THƯỜNG (FULL KHUNG)
-                mainImageStyle = "object-fit: cover; object-position: center; border-radius: 15px; -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, black 85%, transparent 100%);";
+                // TRƯỜNG HỢP 1: CÁ NỀN ĐEN -> Vẫn xóa nền đen (mix-blend-mode), nhưng tự check xem nên Cover hay Contain
+                let fitStyle = isWide ? 'cover' : 'contain';
+                mainImageStyle = `object-fit: ${fitStyle}; object-position: center; mix-blend-mode: screen; -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%); mask-image: linear-gradient(to bottom, black 75%, transparent 100%);`;
+            } 
+            else if (isWide) {
+                // TRƯỜNG HỢP 2: ẢNH BÌNH THƯỜNG MÀ DÀI -> Bung Full 16:9
+                mainImageStyle = "object-fit: cover; object-position: center; border-radius: 12px; -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, black 85%, transparent 100%);";
+            } 
+            else {
+                // TRƯỜNG HỢP 3: ẢNH VUÔNG/NGẮN -> Giữ Contain và lót Blur xịn xò
+                bgLayer = `<img src="${fishImg.src}" style="position: absolute; top: -10%; left: -10%; width: 120%; height: 120%; object-fit: cover; filter: blur(25px) brightness(0.3) saturate(1.2); z-index: 0; pointer-events: none;">`;
+                mainImageStyle = "object-fit: contain; object-position: center; border-radius: 12px; -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, black 85%, transparent 100%); filter: drop-shadow(0 8px 15px rgba(0,0,0,0.8));";
             }
 
             iconHtml = `
-            <div style="position: relative; width: 100%; height: 260px; border-radius: 16px; overflow: hidden; border: 1px solid ${fishGlowColor}; box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 30px ${fishGlowColor}; margin-bottom: 25px; background: #000;">
+            <div style="position: relative; width: 100%; aspect-ratio: 16/9; max-height: 28vh; border-radius: 12px; overflow: hidden; border: 1px solid ${fishGlowColor}; box-shadow: 0 10px 25px rgba(0,0,0,0.6), 0 0 20px ${fishGlowColor}; margin-bottom: clamp(15px, 3vh, 25px); background: #000;">
                 ${bgLayer}
-                <img src="${fishImg.src}" style="position: relative; z-index: 1; width: 100%; height: 100%; ${mainImageStyle} ${!isBlackBorder ? 'filter: drop-shadow(0 10px 20px rgba(0,0,0,0.8));' : ''}">
+                <img src="${fishImg.src}" style="position: relative; z-index: 1; width: 100%; height: 100%; ${mainImageStyle}">
             </div>`;
         }
 
-        document.getElementById('modal-visual').innerHTML = iconHtml; 
+        document.getElementById('modal-visual').innerHTML = iconHtml;
 
         // =====================================
         // TRẢ LẠI THÔNG TIN TIẾNG ANH CHO MODAL
@@ -802,30 +859,56 @@ const PufferAI = {
 
 let didDragAI = false; 
 
-// 🛠️ HÀM KIỂM TRA LỀ: Nếu Puffy đứng gần mép phải (< 380px), lật bảng chat sang trái
-function checkPuffyBounds() {
-    if (!aiWidget) return;
-    const rect = aiWidget.getBoundingClientRect();
-    if (rect.left > window.innerWidth - 380) {
+// 🛠️ HÀM CÂN BẰNG LỀ THÔNG MINH (Chống kẹt góc & Mất chữ Tuyệt Đối)
+function checkPuffyBounds(forceFit = false) {
+    if (!aiWidget || !guideModel) return;
+    
+    // Lấy tọa độ chuẩn xác của toàn bộ khối Widget
+    let currentLeft = aiWidget.getBoundingClientRect().left;
+    let currentTop = aiWidget.getBoundingClientRect().top;
+    
+    // 1. Luôn kiểm tra xem Puffy đang ở nửa nào của màn hình để lật bảng chat
+    if (currentLeft > window.innerWidth / 2) {
         aiWidget.classList.add('flip-x');
     } else {
         aiWidget.classList.remove('flip-x');
     }
+
+    // 2. KHI MỞ CHAT: Phải ép Puffy lùi vào trong để chừa chỗ bung khung chat
+    if (forceFit || aiWidget.classList.contains('show-chat')) {
+        const chatWidth = 400;  // 🚀 Nới rộng dự trù chiều ngang
+        const chatHeight = 460; // 🚀 TĂNG DỰ TRÙ CHIỀU CAO (Đảm bảo không bao giờ lọt thanh input xuống đáy)
+
+        if (aiWidget.classList.contains('flip-x')) {
+            // Mở chat bên TRÁI -> Đẩy qua phải
+            if (currentLeft < chatWidth) currentLeft = chatWidth;
+            if (currentLeft > window.innerWidth - 80) currentLeft = window.innerWidth - 80;
+        } else {
+            // Mở chat bên PHẢI -> Đẩy qua trái
+            if (currentLeft < 20) currentLeft = 20;
+            if (currentLeft > window.innerWidth - chatWidth) currentLeft = window.innerWidth - chatWidth;
+        }
+
+        // 🚀 CHẶN LỌT ĐÁY VÀ LỌT NÓC (Quyết định sinh tử ở đây)
+        if (currentTop < 20) currentTop = 20;
+        if (currentTop > window.innerHeight - chatHeight) currentTop = window.innerHeight - chatHeight;
+
+        // Áp dụng tọa độ mới
+        aiWidget.style.left = `${currentLeft}px`;
+        aiWidget.style.top = `${currentTop}px`;
+    }
 }
 
 if (guideModel && aiWidget) {
-    // 🛠️ TÍNH NĂNG TẮT/MỞ: Click để mở, click lần nữa để đóng
+    // 🛠️ TÍNH NĂNG BẬT/TẮT CHAT
     guideModel.addEventListener('click', () => { 
-        if (didDragAI) return; // Nếu đang kéo thì không tính là click
+        if (didDragAI) return; 
         
-        // Nếu đang mở thì đóng lại
         if (aiWidget.classList.contains('show-chat')) {
             aiWidget.classList.remove('show-chat');
-        } 
-        // Nếu đang đóng thì bật lên
-        else {
-            checkPuffyBounds(); // Quét lề trước khi bung bảng chat
+        } else {
             aiWidget.classList.add('show-chat');
+            checkPuffyBounds(true); // Ép Puffy vào vùng an toàn ngay lập tức
             if (puffyInput) puffyInput.focus();
         }
     });
@@ -837,42 +920,43 @@ if (guideModel && aiWidget) {
         });
     }
 
+    // 🛠️ FIX LỖI KÉO THẢ BỊ JUMP KHI ĐANG MỞ CHAT
     aiWidget.addEventListener('mousedown', (e) => {
-        if (e.target.closest('#chat-panel')) return;
+        if (e.target.closest('#chat-panel')) return; // Cấm kéo nếu click vào bên trong khung chat
         isDraggingAI = true; 
         didDragAI = false; 
-        const rect = aiWidget.getBoundingClientRect(); 
-        aiOffsetX = e.clientX - rect.left; 
-        aiOffsetY = e.clientY - rect.top;
+        
+        // Tính khoảng cách chuột so với gốc của icon Puffy
+        let startLeft = guideModel.getBoundingClientRect().left;
+        let startTop = guideModel.getBoundingClientRect().top;
+        
+        aiOffsetX = e.clientX - startLeft; 
+        aiOffsetY = e.clientY - startTop;
         aiWidget.style.transition = 'none';
     });
     
-document.addEventListener('mousemove', (e) => {
+    document.addEventListener('mousemove', (e) => {
         if (!isDraggingAI) return;
         didDragAI = true; 
         
-        // Tính toán tọa độ mới
         let newX = e.clientX - aiOffsetX;
         let newY = e.clientY - aiOffsetY;
 
-        // Lấy kích thước thực tế của Puffy
-        const widgetWidth = aiWidget.offsetWidth;
-        const widgetHeight = aiWidget.offsetHeight;
-
-        // 🛠️ CHẶN VIỀN: Ép tọa độ không được nhỏ hơn 0 và không lớn hơn kích thước màn hình
-        newX = Math.max(0, Math.min(newX, window.innerWidth - widgetWidth));
-        newY = Math.max(0, Math.min(newY, window.innerHeight - widgetHeight));
+        // Ép icon Puffy không bao giờ lọt ra khỏi 4 cạnh màn hình
+        newX = Math.max(10, Math.min(newX, window.innerWidth - 60));
+        newY = Math.max(10, Math.min(newY, window.innerHeight - 60));
 
         aiWidget.style.left = `${newX}px`;
         aiWidget.style.top = `${newY}px`;
         
-        checkPuffyBounds(); // Liên tục quét lề khi người dùng đang kéo
+        checkPuffyBounds(false); // Chỉ check hướng mặt lật, không chặn cứng khung chat khi kéo
     });
     
     document.addEventListener('mouseup', () => { 
         if (isDraggingAI) {
             isDraggingAI = false; 
             aiWidget.style.transition = 'all 2s cubic-bezier(0.45, 0.05, 0.55, 0.95)';
+            checkPuffyBounds(true); // Thả tay ra thì tự động chốt vào vùng an toàn nếu chat đang mở
             setTimeout(() => { didDragAI = false; }, 100);
         }
     });
@@ -880,14 +964,17 @@ document.addEventListener('mousemove', (e) => {
 
 function puffyFreeRoam() {
     if (!aiWidget) return;
-    if (TourManager.isActive || aiWidget.classList.contains('show-chat') || isDraggingAI) return; 
+    if (typeof TourManager !== 'undefined' && TourManager.isActive) return;
+    if (aiWidget.classList.contains('show-chat') || isDraggingAI) return; 
+    
     const padding = 100;
     const randomX = Math.random() * (window.innerWidth - padding * 2) + padding;
     const randomY = Math.random() * (window.innerHeight / 2 - padding) + padding; 
+    
     aiWidget.style.left = `${randomX}px`;
     aiWidget.style.top = `${randomY}px`;
-    // Quét lề sau khi Puffy tự bơi xong (đợi 2.1s cho hiệu ứng trượt kết thúc)
-    setTimeout(checkPuffyBounds, 2100); 
+    
+    setTimeout(() => checkPuffyBounds(false), 2100); // Check mặt lật sau khi bơi xong
 }
 setInterval(puffyFreeRoam, 6000);
 
@@ -1098,51 +1185,92 @@ if (window.collectedSecretChars instanceof Set) window.collectedSecretChars = Ar
 // MÃ MASTER CHUẨN XÁC 38 KÝ TỰ (Có trùng lặp)
 const MASTER_KEY = "EMCAMONBANHVIDACHIULAMBANVOI1DUANHUEM.";
 
-function handlePuffySearch(query) {
-    const safeQuery = query.trim(); 
-    const upperQuery = safeQuery.toUpperCase();
-    if (upperQuery.replace(/\s+/g, '') === "TEAMBUILDING") {
-PufferAI.say("1/2 của câu đố đã xong nhớ giải cả 1/2 còn lại nhé! 🧩");
-        
-        // Đợi 2.5 giây (2500ms) rồi mới nói tiếp câu thứ 2
-        setTimeout(() => {
-            // Khung chat 2: Kích hoạt dịch chuyển
-            PufferAI.say("Kích hoạt cổng dịch chuyển thời gian! Đang đưa bạn trở về chuyến Teambuilding... 🚌✨");
-            
-            // Đợi thêm 3 giây (3000ms) nữa để đọc xong câu 2 rồi mới chuyển trang
-            setTimeout(() => {
-                window.location.href = "days/pass.html"; 
-            }, 3500);
+// ==========================================
+// 🚀 TÍCH HỢP BỘ NÃO LOCAL (FAKE AI)
+// ==========================================
+function getFakeAIReply(query) {
+    const safeQuery = query.toLowerCase();
 
-        }, 4500);
-        return; // Dừng luôn hàm, không chạy các lệnh tìm kiếm cá ở dưới nữa
+    // 1. NGƯỜI DÙNG CHÀO HỎI
+    if (safeQuery.match(/^(hi|hello|chào|xin chào|hey|alo)/)) {
+        const greetings = [
+            "Puffy đây! 🐡 Bạn muốn tìm hiểu về loài cá nào dưới biển sâu?",
+            "Ọc ọc... Xin chào! Cần Puffy dẫn đường hay kể chuyện đại dương không? 🌊",
+            "Hello bạn! Dám lặn xuống vùng tối cùng Puffy không? 😈"
+        ];
+        return greetings[Math.floor(Math.random() * greetings.length)];
     }
 
-    // ==========================================
-    // 🚀 TÍNH NĂNG GIẢI MÃ THÔNG MINH (CHỐNG SPAM TRÙNG LẶP)
-    // ==========================================
-    
-// TRƯỜNG HỢP 1: Nhập 1 lần đúng cả câu 38 ký tự
-    if (upperQuery.length === MASTER_KEY.length) {
-        if (upperQuery === MASTER_KEY) {
-            PufferAI.say("💎 MẬT MÃ CHÍNH XÁC!<br><br>📁 <b>HỆ THỐNG ĐÃ MỞ KHÓA TÀI LIỆU MẬT</b><br>🔑 Pass của bạn là:<br><span style='font-family: monospace; font-size: 1.2rem; color: #00ffc8; letter-spacing: 2px; display: inline-block; margin-top: 10px; border: 1px dashed #00ffc8; padding: 8px 15px; background: rgba(0, 255, 200, 0.1); border-radius: 8px;'>30/10/2024</span><br><br><i>(Hãy dùng mã này để giải 1 câu đố nhé! 🎁)<br><br>Notice: Giải xong thì ghi lời giải vào ô dưới đây </i>");
-            return;
-        } else {
-            PufferAI.say(`❌ Chuỗi mã ${MASTER_KEY.length} ký tự không chính xác. Hãy kiểm tra lại thứ tự chữ cái!`);
-            return;
+// 2. NGƯỜI DÙNG HỎI VỀ CÁ (Tự động quét data có sẵn trên web)
+    for (let enName in viNames) {
+        let vnName = viNames[enName].toLowerCase();
+        let enNameLower = enName.toLowerCase();
+
+        // Nếu câu hỏi có chứa tên cá (Tiếng Anh hoặc Tiếng Việt)
+        if (safeQuery.includes(vnName) || safeQuery.includes(enNameLower)) {
+            let desc = (typeof extendedDetails !== 'undefined' && extendedDetails[enName]) 
+                        ? extendedDetails[enName] 
+                        : (viShortDescs[enName] || "Loài này bí ẩn quá, Puffy chưa cập nhật kịp!");
+            
+            // 🚀 RÁP THÊM FUN FACT VÀO CÂU TRẢ LỜI
+            let factText = funFacts[enName] ? `<br><br>💡 <b>Fun fact:</b> <i>${funFacts[enName]}</i>` : "";
+            
+            const fishReplies = [
+                `À, <b>${viNames[enName]}</b>! ${desc} ${factText} 🐡`,
+                `Radar dò thấy <b>${viNames[enName]}</b>: ${desc} ${factText} 🌊`,
+                `Bạn hỏi đúng người rồi! Nói về <b>${viNames[enName]}</b> á? ${desc} ${factText} ✨`
+            ];
+            return fishReplies[Math.floor(Math.random() * fishReplies.length)];
         }
     }
 
-    // TRƯỜNG HỢP 2: Nhập từng mảnh ghép
+    // 3. NGƯỜI DÙNG HỎI VỀ Puffy
+    if (safeQuery.includes('bạn là ai') || safeQuery.includes('puffy là ai') || safeQuery.includes('làm gì')) {
+        return "Mình là Puffy, hướng dẫn viên cá nóc máy móc của bạn. Dữ liệu của mình bao trọn đại dương này luôn! 🐡🤖";
+    }
+
+    // 4. FALLBACK: KHÔNG HIỂU CÂU HỎI
+    const fallbacks = [
+        "Hmm... Áp suất cao quá làm mạch điện mình chập chờn. Bạn hỏi tên một loài cá cụ thể được không? 🤔",
+        "Biển sâu còn nhiều bí mật lắm... Radar của Puffy chưa dò ra câu này. Thử hỏi cá khác xem! 🐟",
+        "Ọc ọc... Puffy chưa rành vụ này. Bạn có muốn đi tour tham quan không? (Gõ 'tour') 🌊"
+    ];
+    return fallbacks[Math.floor(Math.random() * fallbacks.length)];
+}
+
+// ==========================================
+// 8. LOGIC CHAT BÁCH KHOA TOÀN THƯ (GEMINI AI DRIVEN)
+// ==========================================
+function handlePuffySearch(query) {
+    const safeQuery = query.trim().toLowerCase(); 
+    const upperQuery = query.trim().toUpperCase();
+
+    // 1. KIỂM TRA TỪ KHÓA TEAMBUILDING
+    if (upperQuery.replace(/\s+/g, '') === "TEAMBUILDING") {
+        PufferAI.say("1/2 của câu đố đã xong nhớ giải cả 1/2 còn lại nhé! 🧩");
+        setTimeout(() => {
+            PufferAI.say("Kích hoạt cổng dịch chuyển thời gian! Đang đưa bạn trở về chuyến Teambuilding... 🚌✨");
+            setTimeout(() => { window.location.href = "days/pass.html"; }, 3500);
+        }, 4500);
+        return; 
+    }
+
+    // 2. KIỂM TRA MẬT MÃ (MASTER_KEY) - GIỮ NGUYÊN CODE TAY CHỖ NÀY
+    if (upperQuery.length === MASTER_KEY.length) {
+        if (upperQuery === MASTER_KEY) {
+            PufferAI.say("💎 MẬT MÃ CHÍNH XÁC!<br><br>📁 <b>HỆ THỐNG ĐÃ MỞ KHÓA TÀI LIỆU MẬT</b><br>🔑 Pass của bạn là:<br><span style='font-family: monospace; font-size: 1.2rem; color: #00ffc8; letter-spacing: 2px; display: inline-block; margin-top: 10px; border: 1px dashed #00ffc8; padding: 8px 15px; background: rgba(0, 255, 200, 0.1); border-radius: 8px;'>30/10/2024</span><br><br><i>(Hãy dùng mã này để giải 1 câu đố nhé! 🎁)<br><br>Notice: Giải xong thì ghi lời giải vào ô dưới đây </i>");
+        } else {
+            PufferAI.say(`❌ Chuỗi mã ${MASTER_KEY.length} ký tự không chính xác. Hãy kiểm tra lại thứ tự chữ cái!`);
+        }
+        return;
+    }
+
     if (upperQuery.length === 1) {
         const requiredCount = MASTER_KEY.split('').filter(c => c === upperQuery).length;
-
         if (requiredCount > 0) {
             const currentCount = window.collectedSecretChars.filter(c => c === upperQuery).length;
-
             if (currentCount < requiredCount) {
                 window.collectedSecretChars.push(upperQuery);
-                
                 if (window.collectedSecretChars.length === MASTER_KEY.length) {
                     PufferAI.say("🔥 KÉT SẮT ĐÃ GOM ĐỦ 38 MẢNH GHÉP!<br><br>📁 <b>HỆ THỐNG ĐÃ MỞ KHÓA TÀI LIỆU MẬT</b><br>🔑 Pass giải nén file ZIP của bạn là:<br><span style='font-family: monospace; font-size: 1.2rem; color: #00ffc8; letter-spacing: 2px; display: inline-block; margin-top: 10px; border: 1px dashed #00ffc8; padding: 8px 15px; background: rgba(0, 255, 200, 0.1); border-radius: 8px;'>30/10/2024</span><br><br><i>(Hãy dùng mã này để giải 1 câu đố nhé! 🎁)<br><br>Notice: Giải xong thì ghi lời giải vào ô dưới đây </i>");
                 } else {
@@ -1154,14 +1282,13 @@ PufferAI.say("1/2 của câu đố đã xong nhớ giải cả 1/2 còn lại nh
             return;
         }
     }
-    // ==========================================
-    // LOGIC TÌM KIẾM BÌNH THƯỜNG
-    // ==========================================
+
     if (TourManager.isActive) {
         PufferAI.say("Tôi đang dẫn Tour rồi! Nhấn nút 'Dừng Tour' ở dưới nếu bạn muốn tự hỏi nhé.");
         return;
     }
 
+    // 3. LỆNH ĐI TOUR
     if (safeQuery.includes('tour') || safeQuery.includes('dẫn đi')) {
         let startIdx = 0;
         const zoneKeywords = [
@@ -1171,12 +1298,9 @@ PufferAI.say("1/2 của câu đố đã xong nhớ giải cả 1/2 còn lại nh
             { keys: ['abyss', 'vực thẳm', 'abyssopelagic'], idx: 3 },
             { keys: ['hadal', 'trench', 'rãnh', 'đáy', 'mariana'], idx: 4 }
         ];
-
         let found = zoneKeywords.find(z => z.keys.some(k => safeQuery.includes(k)));
-        
-        if (found) {
-            startIdx = found.idx; 
-        } else {
+        if (found) startIdx = found.idx; 
+        else {
             let currentDepth = depthValue ? parseInt(depthValue.innerText) : 0;
             if (currentDepth >= 6000) startIdx = 4;
             else if (currentDepth >= 4000) startIdx = 3;
@@ -1184,65 +1308,24 @@ PufferAI.say("1/2 của câu đố đã xong nhớ giải cả 1/2 còn lại nh
             else if (currentDepth >= 200) startIdx = 1;
             else startIdx = 0;
         }
-        
         TourManager.start(startIdx);
         return;
     }
 
+    // 4. KIỂM TRA MẢNH GHÉP CHƯA GIẢI
     const allFishCards = Array.from(document.querySelectorAll('.fish-card'));
-    const totalFish = allFishCards.length;
-
-    let foundZone = zonesData.find(z => z.keys.some(k => safeQuery.includes(k)));
-    const isAskingCount = safeQuery.includes('bao nhiêu') || safeQuery.includes('tổng số') || safeQuery.includes('mấy') || safeQuery.includes('tổng cộng');
-
-    if (foundZone) {
-        if (isAskingCount) {
-            const fishInZone = allFishCards.filter(card => {
-                const d = getElementDepth(card);
-                return d >= foundZone.min && d < foundZone.max;
-            });
-            PufferAI.say(`Khu vực <b>${foundZone.name}</b> hiện đang có <b>${fishInZone.length}</b> loài sinh vật được ghi nhận trong cơ sở dữ liệu! 🐡`);
-        } else {
-            PufferAI.say(`🌊 <b>${foundZone.name}</b>: ${foundZone.desc}`);
-        }
-        return;
-    }
-
-    if (isAskingCount && (safeQuery.includes('loài') || safeQuery.includes('cá') || safeQuery.includes('tổng'))) {
-        PufferAI.say(`Hệ thống đang lưu trữ tổng cộng <b>${totalFish}</b> loài sinh vật biển sâu khác nhau! Bạn có muốn khám phá vùng nào không? 🌊`);
-        return;
-    }
-
     const allWeirdCards = [];
-    let targetFishCard = null;
-    let targetFishName = ""; 
-
     allFishCards.forEach(card => {
-        const originalName = card.getAttribute('data-en-name') || card.querySelector('h2').textContent.trim();
         const meta = card.querySelector('.meta').textContent;
         const weirdnessMatch = meta.match(/Weirdness:\s*([\d.]+)/i);
-        const weirdness = weirdnessMatch ? parseFloat(weirdnessMatch[1]) : 0;
-        
-        if (weirdness > 7) allWeirdCards.push(card);
-
-        const normalizedOriginal = originalName.toLowerCase().replace(/['\- ]/g, '');
-        const normalizedQuery = safeQuery.replace(/['\- ]/g, '');
-        const viNameMatch = (viNames[originalName] || "").toLowerCase().replace(/['\- ]/g, '');
-
-        if (normalizedQuery.includes(normalizedOriginal) || (viNameMatch !== "" && normalizedQuery.includes(viNameMatch))) {
-            targetFishCard = card;
-            targetFishName = originalName;
-        }
+        if (weirdnessMatch && parseFloat(weirdnessMatch[1]) > 7) allWeirdCards.push(card);
     });
 
-const unsolved = allWeirdCards.filter(card => {
+    const unsolved = allWeirdCards.filter(card => {
         const oName = card.getAttribute('data-en-name') || card.querySelector('h2').textContent.trim();
         return !solvedCreatures.has(oName);
     });
 
-    // ==========================================
-    // 🚀 LOGIC CHỜ CÂU TRẢ LỜI CÓ/KHÔNG
-    // ==========================================
     if (window.waitingForUnsolvedNav) {
         if (['có', 'co', 'yes', 'y', 'ok', 'đi'].includes(safeQuery)) {
             window.waitingForUnsolvedNav = false;
@@ -1251,8 +1334,6 @@ const unsolved = allWeirdCards.filter(card => {
                 const viName = viNames[originalName] || originalName;
                 PufferAI.say(`Lên đường thôi! Đang dẫn tới <b>${viName}</b>... 🚀`);
                 unsolved[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
-                
-                // Đưa Puffy tới vị trí của thẻ cá
                 if (aiWidget) {
                     aiWidget.style.left = unsolved[0].classList.contains('right-align') ? "10vw" : "65vw";
                     aiWidget.style.top = "40vh";
@@ -1260,64 +1341,99 @@ const unsolved = allWeirdCards.filter(card => {
             } else {
                 PufferAI.say("Tuyệt vời! Bạn đã giải mã hết rồi! 🏆");
             }
-            return; // Dừng xử lý các lệnh bên dưới
+            return; 
         } else if (['không', 'khong', 'no', 'n', 'ko', 'thôi'].includes(safeQuery)) {
             window.waitingForUnsolvedNav = false;
             PufferAI.say("Okela! Bạn cứ từ từ tận hưởng chuyến đi nhé. Có gì cần cứ gọi Puffy! 🐡");
-            return; // Dừng xử lý các lệnh bên dưới
+            return; 
         } else {
-            // Nếu người dùng hỏi câu khác, tự động hủy trạng thái chờ và trả lời câu mới
             window.waitingForUnsolvedNav = false;
         }
     }
 
-    // ==========================================
-    // LOGIC TÌM KIẾM SINH VẬT & LỊCH SỬ
-    // ==========================================
+    if (safeQuery.includes('chưa giải') || safeQuery.includes('còn mảnh') || (safeQuery.includes('chưa') && safeQuery.includes('mảnh'))) {
+        if (unsolved.length > 0) {
+            window.waitingForUnsolvedNav = true; 
+            PufferAI.say(`Hệ thống báo cáo: Bạn còn <b>${unsolved.length}</b> sinh vật mang mảnh ghép chưa giải mã! 🧩<br><br>👉 Bạn có muốn tôi dẫn đường đến sinh vật gần nhất không? (Gõ: <b>Có</b> hoặc <b>Không</b>)`);
+        } else {
+            PufferAI.say("Đỉnh quá! Bạn đã thu thập đủ 38 mảnh ghép rồi! 🏆 Hãy ráp chúng lại và nhập Mật mã đi nào!");
+        }
+        return;
+    } 
+
+    // 5. TÌM DI TÍCH LỊCH SỬ (Cuộn + Chuyển cho AI chém gió)
+    if (safeQuery.includes('lịch sử') || safeQuery.includes('mốc') || safeQuery.includes('tàu')) {
+        const milestones = document.querySelectorAll('.milestone');
+        if (milestones.length > 0) {
+            const target = milestones[Math.floor(Math.random() * milestones.length)];
+            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // Chuyển cho AI kể chuyện
+            askGemini(`Hãy đóng vai cá nóc Puffy và giới thiệu ngắn gọn, thú vị về di tích: ${target.querySelector('h3').textContent}`);
+        }
+        return;
+    }
+
+    // 6. KIỂM TRA NẾU HỎI SỐ LƯỢNG (Giữ code tay để AI không đếm sai)
+    let foundZone = zonesData.find(z => z.keys.some(k => safeQuery.includes(k)));
+    const isAskingCount = safeQuery.includes('bao nhiêu') || safeQuery.includes('tổng số') || safeQuery.includes('mấy') || safeQuery.includes('tổng cộng');
+
+    if (foundZone && isAskingCount) {
+        const fishInZone = allFishCards.filter(card => {
+            const d = getElementDepth(card);
+            return d >= foundZone.min && d < foundZone.max;
+        });
+        PufferAI.say(`Khu vực <b>${foundZone.name}</b> hiện đang có <b>${fishInZone.length}</b> loài sinh vật được ghi nhận trong cơ sở dữ liệu! 🐡`);
+        return;
+    }
+
+    if (isAskingCount && (safeQuery.includes('loài') || safeQuery.includes('cá') || safeQuery.includes('tổng'))) {
+        PufferAI.say(`Hệ thống đang lưu trữ tổng cộng <b>${allFishCards.length}</b> loài sinh vật biển sâu khác nhau! Bạn có muốn khám phá vùng nào không? 🌊`);
+        return;
+    }
+
+    // 7. ƯU TIÊN TÌM KIẾM CÁ TRƯỚC (Để né chữ "Abyssal")
+    let targetFishCard = null;
+    allFishCards.forEach(card => {
+        const originalName = card.getAttribute('data-en-name') || card.querySelector('h2').textContent.trim();
+        const normalizedOriginal = originalName.toLowerCase().replace(/['\- ]/g, '');
+        const normalizedQuery = safeQuery.replace(/['\- ]/g, '');
+        const viNameMatch = (viNames && viNames[originalName] || "").toLowerCase().replace(/['\- ]/g, '');
+
+        if (normalizedQuery.includes(normalizedOriginal) || (viNameMatch !== "" && normalizedQuery.includes(viNameMatch))) {
+            targetFishCard = card;
+        }
+    });
+
     if (targetFishCard) {
-        const viName = viNames[targetFishName] || targetFishName;
-        const extraInfo = (typeof extendedDetails !== 'undefined' && extendedDetails[targetFishName]) ? extendedDetails[targetFishName] : (viShortDescs[targetFishName] || "Sinh vật biển sâu bí ẩn...");
-        
-        PufferAI.say(`🐟 <b>${viName}</b>: ${extraInfo} <br><br><i>(Tôi biết đáp án giải đố, nhưng không gian lận nhé! 🤫)</i>`);
-        
+        // Chỉ cuộn màn hình tới cá, KHÔNG IN TEXT CODE TAY NỮA
         targetFishCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
         if (aiWidget) {
             aiWidget.style.left = targetFishCard.classList.contains('right-align') ? "10vw" : "65vw";
             aiWidget.style.top = "40vh";
         }
-    }
-    // 🛠️ HỎI SỐ LƯỢNG CÒN LẠI (ĐÃ FIX)
-    else if (safeQuery.includes('chưa') || safeQuery.includes('còn')) {
-        if (unsolved.length > 0) {
-            window.waitingForUnsolvedNav = true; // Bật cờ chờ người dùng trả lời
-            PufferAI.say(`Hệ thống báo cáo: Bạn còn <b>${unsolved.length}</b> sinh vật mang mảnh ghép chưa giải mã! 🧩<br><br>👉 Bạn có muốn tôi dẫn đường đến sinh vật gần nhất không? (Gõ: <b>Có</b> hoặc <b>Không</b>)`);
-        } else {
-            PufferAI.say("Đỉnh quá! Bạn đã thu thập đủ 38 mảnh ghép rồi! 🏆 Hãy ráp chúng lại và nhập Mật mã đi nào!");
-        }
     } 
-    else if (safeQuery.includes('lịch sử') || safeQuery.includes('mốc') || safeQuery.includes('tàu')) {
-        const milestones = document.querySelectorAll('.milestone');
-        if (milestones.length > 0) {
-            const target = milestones[Math.floor(Math.random() * milestones.length)];
-            PufferAI.say(`Radar phát hiện di tích: <b>${target.querySelector('h3').textContent}</b>! ⚓`);
-            target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+    else if (foundZone) {
+        // Chỉ cuộn màn hình tới khu vực biển
+        const targetVh = startDiveVh + mapDepthToPercent(foundZone.min) * diveDistanceVh;
+        const targetPx = (targetVh / 100) * window.innerHeight;
+        window.scrollTo({ top: targetPx - window.innerHeight / 2, behavior: 'smooth' });
     }
-    else {
-        PufferAI.say("Puffy chưa rõ. Bạn có thể nhập Mã bí mật vừa thu thập, hỏi 'còn bao nhiêu con', 'tìm tàu', hoặc gõ 'tour' nhé!");
-    }
+
+// 8. ĐƯA CÂU HỎI CHO NÃO BỘ LOCAL (FAKE AI) XỬ LÝ
+    // Tạo độ trễ 600ms giả vờ như Puffy đang suy nghĩ để giống AI thật
+    PufferAI.say("Đang lục tìm trí nhớ... 🫧");
+    setTimeout(() => {
+        // Xóa dòng trạng thái đang tìm (tùy chọn, nhưng Puffy chèn tin nhắn mới xuống dưới)
+        const reply = getFakeAIReply(query);
+        PufferAI.say(reply);
+    }, 600); 
 }
+
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
-    
-    // Đợi thêm một chút (ví dụ 500ms) để các thư viện như GSAP kịp tính toán vị trí
     setTimeout(() => {
         preloader.classList.add('loaded');
-        
-        // Sau khi load xong thì cho phép cuộn trang
         document.body.style.overflow = 'auto';
     }, 500);
 });
-
-// Trong khi đang load thì không cho cuộn trang để tránh lỗi vị trí
 document.body.style.overflow = 'hidden';
