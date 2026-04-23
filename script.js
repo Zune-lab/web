@@ -124,7 +124,7 @@ const viNames = {
     "Sea Angel": "Thiên Thần Biển", "Hatchetfish": "Cá Rìu", 
     "Helmet Jellyfish": "Sứa Mũ Bảo Hiểm", "Blue Dragon (Glaucus atlanticus)": "Sên Biển Rồng Xanh", "Butterflyfish": "Cá Bướm", "Parrotfish": "Cá Mó (Cá Vẹt)", "Surgeonfish": "Cá Đuôi Gai",
     "Barracuda": "Cá Nhồng", "Sea Turtle": "Rùa Biển", "Stingray": "Cá Đuối Gai Độc",
-    "Moray Eel": "Lươn Moray", "Atlantic Cod": "Cá Tuyết Đại Tây Dương", "Flounder": "Cá Bơn", "Clownfish": "Cá Hề"
+    "Moray Eel": "Lươn Moray", "Atlantic Cod": "Cá Tuyết Đại Tây Dương", "Flounder": "Cá Bơn", "Clownfish": "Cá Hề", "Amphipod Swarm": "Bầy Giáp Xác"
 };
 
 const viShortDescs = {
