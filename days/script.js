@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const lockMessage = document.getElementById('lock-message');
 
     // Mở tạm thời để check (Đổi thành false khi gửi cho Banh)
-    const DEBUG_MODE = false; 
+    const DEBUG_MODE = true; 
 
     function validateEntry() {
         const now = new Date();
