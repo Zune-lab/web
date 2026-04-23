@@ -914,38 +914,53 @@ if (guideModel && aiWidget) {
         });
     }
 
-// 🛠️ CHO PHÉP NẮM KÉO TOÀN BỘ KHUNG CHAT (NẮM Ở THANH TIÊU ĐỀ HOẶC ICON)
+// 🛠️ HỆ THỐNG KÉO THẢ ĐA ĐIỂM (DI CHUYỂN CẢ ICON VÀ KHUNG CHAT)
     aiWidget.addEventListener('mousedown', (e) => {
-        // Cấm kéo chỉ khi người dùng đang bấm vào ô nhập chữ, vùng cuộn tin nhắn hoặc nút Tắt (X)
+        // 🛑 Chặn kéo nếu đang bấm vào vùng nhập liệu hoặc danh sách tin nhắn
         if (e.target.closest('.chat-messages') || e.target.closest('.chat-input-area') || e.target.closest('#close-chat')) return; 
         
         isDraggingAI = true; 
         didDragAI = false; 
         
-        // 🚀 Lấy tọa độ gốc của TOÀN BỘ cụm Widget thay vì chỉ lấy con cá, giúp kéo khung mượt mà không bị giật (jump)
-        let startLeft = aiWidget.getBoundingClientRect().left;
-        let startTop = aiWidget.getBoundingClientRect().top;
+        // 🚀 Lấy tọa độ chuẩn của toàn bộ Widget (aiWidget) để di chuyển đồng bộ
+        const rect = aiWidget.getBoundingClientRect();
+        aiOffsetX = e.clientX - rect.left; 
+        aiOffsetY = e.clientY - rect.top;
         
-        aiOffsetX = e.clientX - startLeft; 
-        aiOffsetY = e.clientY - startTop;
-        aiWidget.style.transition = 'none';
+        aiWidget.style.transition = 'none'; // Tắt animation khi đang kéo để không bị trễ
         
-        // Đổi con trỏ chuột thành hình bàn tay nắm lại cho ngầu
-        if (e.target.closest('.chat-header')) {
-            e.target.closest('.chat-header').style.cursor = 'grabbing';
+        // Hiệu ứng chuột khi nắm kéo
+        if (e.target.closest('.chat-header') || e.target.closest('#guide-model')) {
+            document.body.style.cursor = 'grabbing';
         }
     });
     
-    // Trả lại trỏ chuột bình thường khi nhả tay
-    document.addEventListener('mouseup', () => {
-        const header = document.querySelector('.chat-header');
-        if (header) header.style.cursor = 'grab';
+    document.addEventListener('mousemove', (e) => {
+        if (!isDraggingAI) return;
+        didDragAI = true; // Đánh dấu là đang kéo, để không kích hoạt sự kiện Click mở chat
         
+        let newX = e.clientX - aiOffsetX;
+        let newY = e.clientY - aiOffsetY;
+
+        // Giới hạn không cho Puffy lọt ra ngoài màn hình
+        newX = Math.max(0, Math.min(newX, window.innerWidth - 60));
+        newY = Math.max(0, Math.min(newY, window.innerHeight - 60));
+
+        aiWidget.style.left = `${newX}px`;
+        aiWidget.style.top = `${newY}px`;
+        
+        checkPuffyBounds(false); 
+    });
+    
+    document.addEventListener('mouseup', () => { 
         if (isDraggingAI) {
             isDraggingAI = false; 
-            aiWidget.style.transition = 'all 2s cubic-bezier(0.45, 0.05, 0.55, 0.95)';
+            document.body.style.cursor = 'default';
+            // Trả lại hiệu ứng di chuyển mượt mà sau khi thả tay
+            aiWidget.style.transition = 'all 1s cubic-bezier(0.45, 0.05, 0.55, 0.95)';
             checkPuffyBounds(true); 
-            setTimeout(() => { didDragAI = false; }, 100);
+            // Dùng setTimeout cực ngắn để chặn việc tự động mở chat sau khi vừa kéo xong
+            setTimeout(() => { didDragAI = false; }, 50);
         }
     });
 }
