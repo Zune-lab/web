@@ -347,35 +347,57 @@ function getElementDepth(el) {
 function alignToExactDepth() {
     const isMobile = window.innerWidth <= 768;
     
+    // 1. LẤY VỊ TRÍ CÁC KHU VỰC CHỮ (ZONES) ĐỂ LÀM "VÙNG CẤM"
+    let zonePositions = [];
     document.querySelectorAll('.zone-marker').forEach(marker => {
         const depth = parseInt(marker.getAttribute('data-depth')) || 0;
         let topVh = startDiveVh + mapDepthToPercent(depth) * diveDistanceVh;
         marker.style.top = `${topVh}vh`;
         marker.style.transform = "translateY(-50%)"; 
+        
+        // Tạo "vùng an toàn" xung quanh Zone (20vh ở trên và 25vh ở dưới)
+        zonePositions.push({
+            top: topVh - 20,
+            bottom: topVh + 25
+        });
     });
 
-let items = [];
+    // 2. SẮP XẾP CÁC THẺ CÁ VÀ MỐC LỊCH SỬ
+    let items = [];
     document.querySelectorAll('.fish-card, .milestone').forEach(el => {
         items.push({ el, depth: getElementDepth(el) });
     });
     items.sort((a, b) => a.depth - b.depth);
 
-    // 🚀 THUẬT TOÁN SO LE CHUẨN XÁC (ZIG-ZAG)
-    let isLeft = true; // Bắt đầu bằng bên trái
+    let isLeft = true; 
     let lastTopVh = startDiveVh; 
-    const minGapVh = 28; // Giãn cách dọc tối thiểu giữa 2 thẻ (giúp mượt mắt)
+    
+    // 🚀 TỰ ĐỘNG TÍNH TOÁN KHOẢNG CÁCH DỰA TRÊN TỈ LỆ MÀN HÌNH
+    const screenRatio = window.innerWidth / window.innerHeight;
+    // Nếu màn hình ngang (Laptop/PC), cần gap (vh) to hơn vì chiều cao thực tế nhỏ
+    let minGapVh = screenRatio > 1.2 ? 35 : 22; 
 
     items.forEach((item, index) => {
         let exactTopVh = startDiveVh + mapDepthToPercent(item.depth) * diveDistanceVh;
         
-        // Nếu thẻ này đứng quá sát thẻ trước, đẩy nó xuống 1 khoảng minGapVh
+        // BƯỚC A: Né thẻ cá trước đó
         if (exactTopVh < lastTopVh + minGapVh && index !== 0) {
             exactTopVh = lastTopVh + minGapVh;
         }
-        lastTopVh = exactTopVh;
 
+        // BƯỚC B: Né các vùng chữ Zone (Không cho thẻ đè lên chữ)
+        for (let zone of zonePositions) {
+            // Nếu vị trí thẻ vô tình rơi vào giữa vùng cấm của Zone
+            if (exactTopVh > zone.top && exactTopVh < zone.bottom) {
+                exactTopVh = zone.bottom + 5; // Tự động đẩy thẻ xuống dưới Zone 5vh
+            }
+        }
+
+        lastTopVh = exactTopVh; // Lưu lại vị trí để thẻ sau né
+
+        // BƯỚC C: Sắp xếp Trái/Phải (Zig-zag)
         let assignedSide = isLeft ? 'left' : 'right';
-        isLeft = !isLeft; // Đảo chiều cho thẻ tiếp theo (Trái -> Phải -> Trái)
+        isLeft = !isLeft; 
 
         if (isMobile) {
             assignedSide = 'center'; 
@@ -392,8 +414,10 @@ let items = [];
         item.el.onmouseleave = () => item.el.style.transform = `translateY(-50%)`;
     });
 
+    // 🚀 TỰ ĐỘNG KÉO DÀI ĐÁY BIỂN
+    // Đảm bảo đáy biển luôn dài hơn vị trí của thẻ cuối cùng, không bị cụt giữa chừng
     const mainEl = document.querySelector('main');
-    if(mainEl) mainEl.style.height = `${endDiveVh + 50}vh`;
+    if(mainEl) mainEl.style.height = `${lastTopVh + 50}vh`;
 }
 window.addEventListener('load', alignToExactDepth);
 window.addEventListener('resize', alignToExactDepth);
