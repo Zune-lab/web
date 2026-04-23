@@ -833,8 +833,6 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-const closeBtn = document.querySelector('.close-btn');
-const modal = document.getElementById('fish-modal');
 if(closeBtn && modal) closeBtn.addEventListener('click', () => {
     modal.classList.remove('show');
     document.body.classList.remove('no-scroll');
