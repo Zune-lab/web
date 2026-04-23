@@ -1,57 +1,67 @@
-🌊 Dive Into The Unknown - Interactive Ocean Exploration
-Một trang web trải nghiệm tương tác điện ảnh (Cinematic Interactive Experience) đưa người dùng lặn sâu qua các tầng của đại dương, khám phá những sinh vật kỳ bí và giải mã các bí ẩn của vực thẳm. Dự án kết hợp giữa GSAP Animations, Scroll-based Storytelling và hệ thống AI Assistant tích hợp.
+# 🌊 Dive Into The Unknown - Interactive Ocean Exploration
 
-🚀 Tính năng nổi bật
-1. Trải nghiệm lặn biển Cinematic (Smooth Scrolling)
-Scale độ sâu phi tuyến tính: Áp dụng thuật toán bẻ cong không gian, ưu tiên diện tích hiển thị cho các vùng nước nông giàu sinh vật và nén các vùng rãnh sâu để tối ưu trải nghiệm người dùng.
+Một trang web trải nghiệm tương tác điện ảnh (**Cinematic Interactive Experience**) đưa người dùng lặn sâu qua các tầng của đại dương, khám phá những sinh vật kỳ bí và giải mã các bí ẩn của vực thẳm. 
 
-Hiệu ứng môi trường động:
+Dự án là sự kết hợp giữa kiến trúc **Front-end hiện đại**, thuật toán xử lý dữ liệu thông minh và hệ thống **AI Assistant** tích hợp.
 
-Marine Snow (Tuyết biển): Độ dày và độ sáng của các hạt hạt lơ lửng tăng dần theo độ sâu.
+---
 
-Dynamic Light Rays (God Rays): Hệ thống tia sáng mặt trời xuyên qua làn nước được mô phỏng sống động dưới mặt nước.
+## 🚀 Tính năng nổi bật & Công nghệ thực thi
 
-Smooth Color Blending: Nền biển tự động chuyển màu mượt mà từ xanh lơ (mặt nước) sang đỏ nguy hiểm (1000m) và tím rãnh sâu (11000m) dựa trên tọa độ cuộn.
+### 1. Trải nghiệm lặn biển Cinematic (Smooth Scrolling)
+Dự án không sử dụng cuộn trang thông thường mà áp dụng các thuật toán điều hướng môi trường động:
 
-2. Bách khoa toàn thư sinh vật biển (60+ Loài)
-Hệ thống thẻ kính (Glassmorphism): Các thẻ thông tin được thiết kế hiện đại với hiệu ứng mờ đục và phát sáng theo vùng độ sâu (Glow-deep, Glow-abyss, Glow-hadal).
+* **Scale độ sâu phi tuyến tính:** Áp dụng thuật toán bẻ cong không gian, ưu tiên diện tích hiển thị cho các vùng nước nông giàu sinh vật (0-1000m) và nén các vùng rãnh sâu để tối ưu trải nghiệm.
+    ```javascript
+    // Thuật toán nội suy độ sâu dựa trên tỷ lệ phần trăm cuộn
+    function mapDepthToPercent(depth) {
+        if (depth <= 200) return (depth / 200) * 0.20; 
+        if (depth <= 1000) return 0.20 + ((depth - 200) / 800) * 0.25;
+        // ... logic tiếp tục nén không gian ở các tầng sâu hơn
+    }
+    ```
+* **Marine Snow & God Rays:** * Hệ thống tia sáng mặt trời (**God Rays**) xuyên qua làn nước được mô phỏng sống động bằng CSS Gradients và Keyframes.
+    * Hiệu ứng **Marine Snow** (Tuyết biển) với mật độ hạt tăng dần theo độ sâu thực tế.
+* **Smooth Color Blending:** Nền biển tự động chuyển màu mượt mà (Interpolation) từ xanh lơ sang đỏ nguy hiểm (1000m) và tím rãnh sâu (11000m).
 
-Thuật toán Dò tìm Ảnh thông minh: Hệ thống JavaScript tự động dò tìm mọi định dạng tên file (Hoa/Thường/Gạch ngang) và đuôi file (.jpg, .JPG, .png) để khắc phục triệt để lỗi phân biệt chữ hoa-thường trên GitHub Pages.
+### 2. Bách khoa toàn thư sinh vật biển (60+ Loài)
+* **Glassmorphism UI:** Các thông tin sinh vật được trình bày trên các thẻ kính mờ hiện đại, hỗ trợ hiệu ứng phát sáng (**Glow**) theo vùng nước lặn.
+* **Thuật toán Dò tìm Ảnh (Brute-force Fallback):** Hệ thống tự động dò tìm tên file ảnh để khắc phục triệt để lỗi phân biệt chữ hoa-thường và định dạng file trên GitHub Pages.
+    ```javascript
+    const attempts = [
+        title.replace(/\s+/g, '-') + '.jpg',      // Kiểu 1: Mahi-Mahi.jpg
+        title.toLowerCase().replace(/\s+/g, '-') + '.jpg', // Kiểu 2: mahi-mahi.jpg
+        title.toLowerCase().replace(/[^a-z0-9]/g, '-') + '.png' // Kiểu 3: png format
+    ];
+    ```
 
-Interactive Modal: Cung cấp thông tin chi tiết, hình ảnh sắc nét và các thông số sinh học của từng loài.
+### 3. Puffy AI - Hướng dẫn viên thông minh
+* **Interactive Chat Widget:** Puffy có khả năng dẫn Tour tự động, kể chuyện về di tích lịch sử (Titanic, tàu Trieste...) và trả lời thông tin về hơn 60 loài cá.
+* **Hệ thống Quiz & Mảnh ghép:** Giải mã các câu đố từ sinh vật kỳ dị để thu thập 38 mảnh ghép mật mã ẩn.
+* **Smart Physics Drag:** Khung chat có khả năng kéo thả linh hoạt, tự động nhận diện lề màn hình để lật hướng hiển thị, tránh che khuất nội dung trang web.
 
-3. Puffy AI - Hướng dẫn viên Cá nóc thông minh
-Tương tác đa phương thức: Puffy có thể dẫn Tour tham quan tự động, kể chuyện về các di tích lịch sử như tàu Titanic, hoặc trả lời các câu hỏi về hơn 60 loài cá.
+### 4. Ambient Soundscape (Âm thanh đa tầng)
+* Sử dụng công nghệ nội suy âm lượng để trộn (mix) 3 tầng nhạc nền khác nhau dựa trên vị trí hiện tại của người dùng, tạo cảm giác lặn sâu thực thụ qua thính giác.
 
-Hệ thống Quiz & Mảnh ghép: Người dùng cần trả lời các câu hỏi hóc búa từ những sinh vật có độ kỳ dị cao (Weirdness > 7) để thu thập 38 mảnh ghép mật mã ẩn.
+---
 
-Smart Physics Drag: Khung chat có thể kéo thả linh hoạt trên màn hình, tự động lật hướng và cân bằng lề để không bao giờ bị kẹt hoặc mất chữ.
+## 🛠 Công nghệ sử dụng
 
-4. Hệ thống Âm thanh đa tầng (Ambient Soundscape)
-Sử dụng công nghệ nội suy âm thanh để tự động chuyển đổi âm lượng giữa 3 tầng nhạc nền (Surface, Deep, Abyss) tùy theo độ sâu thực tế của người dùng.
+| Công nghệ | Mục đích |
+| :--- | :--- |
+| **HTML5 & CSS3** | Cấu trúc UI, Flexbox/Grid và hiệu ứng môi trường. |
+| **JavaScript (ES6+)** | Xử lý logic AI, thuật toán cuộn và quản lý dữ liệu cá. |
+| **Intersection Observer** | Tối ưu hóa hiệu suất hiển thị thẻ sinh vật khi cuộn. |
+| **GitHub Pages** | Triển khai và vận hành trang web trực tuyến. |
 
-🛠 Công nghệ sử dụng
-Front-end: HTML5, CSS3 (Flexbox, Grid, Animations), JavaScript (ES6+).
+---
 
-Animations: CSS Keyframes & Intersection Observer API.
+## 📁 Cấu trúc thư mục
 
-Icons/Images: Custom SVG waves, Emoji avatars, và hệ thống ảnh thực tế được tối ưu hóa.
-
-Deployment: GitHub Pages.
-
-📁 Cấu trúc thư mục
-Plaintext
-├── images/             # Chứa hơn 60 ảnh sinh vật biển (chuẩn hóa tên file)
-├── sound/              # Chứa các file âm thanh môi trường (.mp3)
-├── days/               # Khu vực các trang bí mật và sự kiện đặc biệt
-├── index.html          # Cấu trúc chính của đại dương
-├── style.css           # Hiệu ứng thị giác và giao diện Responsive
-└── script.js           # Bộ não xử lý logic, AI và cuộn mượt
-🎮 Cách chạy dự án
-Clone repository về máy: git clone https://github.com/zune-lab/web.git
-
-Mở file index.html trên trình duyệt (Khuyến khích dùng Live Server trong VS Code).
-
-Sử dụng con lăn chuột hoặc kéo thanh Depth Gauge bên phải để bắt đầu chuyến hành trình.
-
-Dự án được thực hiện bởi Nguyễn Hải Vương (CLC IT - SGU). Mật mã bí mật nằm đâu đó dưới vực thẳm... hãy đi tìm nó! 🐡✨
+```text
+├── images/             # Chứa 60+ ảnh thực tế sinh vật biển
+├── sound/              # Thư viện âm thanh môi trường đa tầng
+├── days/               # Khu vực chứa các trang bí mật và sự kiện
+├── index.html          # File cấu trúc chính của dự án
+├── style.css           # Định nghĩa hiệu ứng và giao diện Responsive
+└── script.js           # Bộ não xử lý logic, AI và thuật toán cuộn
